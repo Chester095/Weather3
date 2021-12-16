@@ -6,16 +6,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.geekbrains.weather.R
+import com.geekbrains.weather.databinding.DetailFragmentBinding
 import com.geekbrains.weather.model.Weather
 
-class DetailsFragment : Fragment() {
-    private var _binding: FragmentDetailsBinding? = null
+class DetailFragment : Fragment() {
+    private var _binding: DetailFragmentBinding? = null
     private val binding get() = _binding!!
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentDetailsBinding.inflate(inflater, container, false)
+        _binding = DetailFragmentBinding.inflate(inflater, container, false)
         return binding.getRoot()
     }
 
@@ -29,15 +30,15 @@ class DetailsFragment : Fragment() {
                 getString(R.string.city_coordinates),
                 city.lat.toString(),
                 city.lon.toString()
-            ) binding . temperatureValue . text = weather . temperature . toString ()
+            ) binding.temperatureValue.text = weather.temperature.toString ()
             binding.feelsLikeValue.text = weather.feelsLike.toString()
         }
     }
 
     companion object {
         const val BUNDLE_EXTRA = "weather"
-        fun newInstance(bundle: Bundle): DetailsFragment {
-            val fragment = DetailsFragment()
+        fun newInstance(bundle: Bundle): DetailFragment {
+            val fragment = DetailFragment()
             fragment.arguments = bundle
             return fragment
         }

@@ -1,4 +1,7 @@
 package com.geekbrains.weather.model
 
-class City {
-}
+data class City(
+    val city: String,
+    val lat: Double,
+    val lon: Double
+)

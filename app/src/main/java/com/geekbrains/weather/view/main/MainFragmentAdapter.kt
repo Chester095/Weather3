@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.geekbrains.weather.R
+import com.geekbrains.weather.model.Weather
 
 class MainFragmentAdapter(
     private var onItemViewClickListener:
