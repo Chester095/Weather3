@@ -8,7 +8,9 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/main_recycle_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/main_item" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/mainFAB"
@@ -20,19 +22,22 @@
         app:maxImageSize="@dimen/fab_icon_size" />
 
     <LinearLayout
+        android:id="@+id/loadingContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@android:color/darker_gray"
         android:gravity="center"
         android:orientation="vertical"
-        tools:context=".view.MainFragment">
+        tools:context=".view.MainFragment"
+        tools:visibility="gone">
 
         <TextView
-            android:id="@+id/cityName"
+            android:id="@+id/loading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20sp"
+            android:layout_marginTop="@dimen/loading_margin_top"
             android:text="LOADING..."
-            android:textSize="35sp"
+            android:textSize="@dimen/loading_text_size"
             android:textStyle="bold" />
 
         <ProgressBar
@@ -40,4 +45,5 @@
             android:layout_height="wrap_content" />
 
     </LinearLayout>
+
 </FrameLayout>

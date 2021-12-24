@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.main.MainFragment">
 
+
     <LinearLayout
+        android:id="@+id/loadingContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
@@ -17,14 +18,20 @@
             android:id="@+id/cityName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20sp"
-            android:text="LOADING..."
-            android:textSize="35sp"
-            android:textStyle="bold" />
+            android:layout_marginTop="@dimen/detail_city_name_margin_top"
+            android:textSize="@dimen/city_name_text_size"
+            android:textStyle="bold"
+            tools:text="Москва" />
 
-        <ProgressBar
+        <TextView
+            android:id="@+id/temperature"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/temperature_margin_top"
+            android:textSize="@dimen/temperature_text_size"
+            android:textStyle="bold"
+            tools:text="10" />
+
 
     </LinearLayout>
 

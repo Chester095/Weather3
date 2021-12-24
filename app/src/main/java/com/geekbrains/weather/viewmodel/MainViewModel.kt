@@ -1,32 +1,40 @@
 package com.geekbrains.weather.viewmodel
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.geekbrains.weather.model.Repository
 import com.geekbrains.weather.model.RepositoryImpl
-import java.lang.Thread.sleep
+import kotlin.random.Random
 
-class MainViewModel(
-    private val liveDataToObserve: MutableLiveData<AppState> = MutableLiveData(),
-    private val repositoryImpl: Repository = RepositoryImpl()
-) :
-    ViewModel() {
-    fun getLiveData() = liveDataToObserve
-    fun getWeatherFromLocalSourceRus() = getDataFromLocalSource(isRussian = true)
-    fun getWeatherFromLocalSourceWorld() = getDataFromLocalSource(isRussian = false)
+class MainViewModel : ViewModel() {
+    private val liveDataToObserve: MutableLiveData<AppState> = MutableLiveData()
+    private val repo: Repository = RepositoryImpl()
+    fun getData(): LiveData<AppState> = liveDataToObserve
 
-    fun getWeatherFromRemoteSource() = getDataFromLocalSource(isRussian = true)
-    private fun getDataFromLocalSource(isRussian: Boolean) {
+    fun getWeatherFromLocalStorageRus() = getDataFromLocalSource(true)
+    fun getWeatherFromLocalStorageWorld() = getDataFromLocalSource(false)
+    fun getWeatherFromRemoteSource() = getDataFromLocalSource(true)
+
+    private fun getDataFromLocalSource(isRussian: Boolean = true) {
         liveDataToObserve.value = AppState.Loading
+
         Thread {
-            sleep(1000)
-            liveDataToObserve.postValue(
+            Thread.sleep(1000)
+
+            val weather = if (isRussian) {
+                repo.getWeatherFromLocalStorageRus()
+            } else {
+                repo.getWeatherFromLocalStorageWorld()
+            }
+
+            liveDataToObserve.postValue(AppState.Success(weather))
+/*            liveDataToObserve.postValue(
                 AppState.Success(
-                    if (isRussian)
-                        repositoryImpl.getWeatherFromLocalStorageRus() else
-                        repositoryImpl.getWeatherFromLocalStorageWorld()
-                )
-            )
+
+            )*/
         }.start()
     }
+
+
 }

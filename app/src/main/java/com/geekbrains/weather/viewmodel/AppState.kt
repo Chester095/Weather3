@@ -1,9 +1,7 @@
 package com.geekbrains.weather.viewmodel
 
-import com.geekbrains.weather.model.Weather
-
 sealed class AppState {
-    data class Success(val weatherData: List<Weather>) : AppState()
+    data class Success<T>(val data: T) : AppState()
     data class Error(val error: Throwable) : AppState()
     object Loading : AppState()
 }

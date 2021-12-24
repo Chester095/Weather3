@@ -10,8 +10,11 @@
     <dimen name="recycler_item_text_size">25sp</dimen>
     <dimen name="recycler_item_line_height">1dp</dimen>
     <dimen name="recycler_item_line_margin_end">20dp</dimen>
-    <string name="app_name">Android With Kotlin</string>
-    <string name="temperature_label">Температура</string>
-    <string name="feels_like_label">Ощущается как</string>
-    <string name="city_coordinates">lt/ln: %s, %s"</string>
+    <dimen name="detail_city_name_margin_top">20sp</dimen>
+    <dimen name="city_name_text_size">35sp</dimen>
+    <dimen name="temperature_text_size">35sp</dimen>
+    <dimen name="temperature_margin_top">20sp</dimen>
+    <dimen name="loading_margin_top">20sp</dimen>
+    <dimen name="loading_text_size">35sp</dimen>
+
 </resources>
