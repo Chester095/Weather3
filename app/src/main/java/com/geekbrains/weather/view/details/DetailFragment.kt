@@ -31,10 +31,12 @@ class DetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val weather = arguments?.getParcelable<Weather>("WEATHER_EXTRA")
+        arguments?.getParcelable<Weather>("WEATHER_EXTRA")
+            ?.let {
+                binding.cityName.text = it.city.name
+                binding.temperature.text = it.temperature.toString()
+            } ?: throw NullPointerException("Weather is null!")
 
-        binding.cityName.text = weather?.city?.name ?: ""
-        binding.temperature.text = weather?.temperature?.toString()
     }
 
     override fun onDestroy() {

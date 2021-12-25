@@ -13,7 +13,7 @@ class MainAdapter : RecyclerView.Adapter<MainAdapter.MainViewHolder>() {
     //данные которые будут в списке лежать
     private var weatherData: List<Weather> = listOf()
     var listener: OnItemClick? = null
-//    MainFragment.OnItemViewClickListener?
+
 
     //когда будет дата передаваться
     fun setWeather(data: List<Weather>) {
@@ -39,17 +39,22 @@ class MainAdapter : RecyclerView.Adapter<MainAdapter.MainViewHolder>() {
     inner class MainViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         // по погоде будем заполнять элемент списка
         fun bind(weather: Weather) {
-            itemView.findViewById<TextView>(R.id.main_city_name_text_view).text = weather.city.name
-            //когда наш Айтем вью будут кликать
-            itemView.setOnClickListener {
-                listener?.onClick(weather)
+
+            itemView.apply {
+                findViewById<TextView>(R.id.main_city_name_text_view).text = weather.city.name
+
+                //когда наш Айтем вью будут кликать
+                setOnClickListener {
+                    listener?.onClick(weather)
+                }
             }
+
         }
     }
 
     //функциональный интерфейс
     fun interface OnItemClick {
-        //чтобы weather была parceble
+        //чтобы weather была parcelable
         fun onClick(weather: Weather)
     }
 }
