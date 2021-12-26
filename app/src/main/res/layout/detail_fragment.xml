@@ -24,7 +24,52 @@
             tools:text="Москва" />
 
         <TextView
-            android:id="@+id/temperature"
+            android:id="@+id/cityCoordinates"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/detail_city_name_margin_top"
+            android:textSize="@dimen/city_name_text_size"
+            android:textStyle="bold"
+            tools:text="Москва" />
+
+        <TextView
+            android:id="@+id/weatherCondition"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/temperature_margin_top"
+            android:textSize="@dimen/temperature_text_size"
+            android:textStyle="bold"
+            tools:text="Облачно" />
+
+        <TextView
+            android:id="@+id/temperatureLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/temperature_margin_top"
+            android:textSize="@dimen/temperature_text_size"
+            android:textStyle="bold"
+            tools:text="10" />
+
+        <TextView
+            android:id="@+id/temperatureValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/detail_city_name_margin_top"
+            android:textSize="@dimen/temperature_text_size"
+            android:textStyle="bold"
+            tools:text="Москва" />
+
+        <TextView
+            android:id="@+id/feelsLikeLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/detail_city_name_margin_top"
+            android:textSize="@dimen/temperature_text_size"
+            android:textStyle="bold"
+            tools:text="Москва" />
+
+        <TextView
+            android:id="@+id/feelsLikeValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/temperature_margin_top"
