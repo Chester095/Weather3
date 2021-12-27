@@ -1,15 +1,19 @@
 package com.geekbrains.weather.view.details
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.geekbrains.weather.databinding.DetailFragmentBinding
 import com.geekbrains.weather.model.Weather
 import com.geekbrains.weather.model.WeatherDTO
 import com.geekbrains.weather.model.WeatherLoader
+import com.geekbrains.weather.view.showSnackBar
+import com.google.android.material.snackbar.Snackbar
 
 class DetailFragment : Fragment() {
     companion object {
@@ -46,20 +50,21 @@ class DetailFragment : Fragment() {
                         binding.weatherCondition.text = fact.condition
                         binding.temperatureValue.text = fact.temp?.toString()
                         binding.feelsLikeValue.text = fact.feelsLike?.toString()
-
                     }
-
-
                 }
 
                 override fun onFailed(throwable: Throwable) {
-                    Toast.makeText(requireContext(), throwable.message, Toast.LENGTH_LONG).show()
+                    binding.root.showSnackBar(throwable.message.toString(), "Попробовать снова", {
+                        //запросили новые данные
+//                       TODO вставить действие
+                    })
+//                    Toast.makeText(requireContext(), throwable.message, Toast.LENGTH_LONG).show()
                 }
             })
 
         }
-
     }
+
 
     override fun onDestroy() {
         super.onDestroy()

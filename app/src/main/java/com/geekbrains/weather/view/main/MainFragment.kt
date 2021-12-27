@@ -51,7 +51,6 @@ class MainFragment : Fragment() {
 
         binding.mainRecycleView.layoutManager = LinearLayoutManager(requireActivity())
 
-
         adapter.listener = MainAdapter.OnItemClick { weather ->
 
             // apply сразу производит операцию над объектом

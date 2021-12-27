@@ -12,9 +12,6 @@ class DetailViewModel : ViewModel() {
     private val repo: Repository = RepositoryImpl()
     fun getData(): LiveData<AppState> = liveDataToObserve
 
-//    fun getWeatherFromLocalStorageRus() = repositoryImpl.getDataFromLocalSource(isRussian = true)
-//    fun getWeatherFromLocalStorageWorld() = getDataFromLocalSource(isRussian = false)
-//    fun getWeatherFromRemoteSource() = getDataFromLocalSource(isRussian = true)
 
     internal fun getWeather() {
         liveDataToObserve.value = AppState.Loading
@@ -28,13 +25,6 @@ class DetailViewModel : ViewModel() {
             } else {
                 liveDataToObserve.postValue(AppState.Error(Exception("Проверь интернет")))
             }
-/*            liveDataToObserve.postValue(
-                AppState.Success(
-                    if (isRussian)
-                        repositoryImpl.getWeatherFromLocalStorageRus() else
-                        repositoryImpl.getWeatherFromLocalStorageWorld()
-                )
-            )*/
         }.start()
     }
 

@@ -29,10 +29,6 @@ class MainViewModel : ViewModel() {
             }
 
             liveDataToObserve.postValue(AppState.Success(weather))
-/*            liveDataToObserve.postValue(
-                AppState.Success(
-
-            )*/
         }.start()
     }
 

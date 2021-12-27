@@ -4,6 +4,7 @@ import android.os.Build
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
+import com.geekbrains.weather.BuildConfig
 import com.google.gson.Gson
 import java.io.BufferedReader
 import java.io.InputStreamReader
@@ -31,7 +32,7 @@ object WeatherLoader {
 
                 urlConnection = uri.openConnection() as HttpsURLConnection
                 //передаём в urlConnection  наш ключ
-                urlConnection.addRequestProperty("X-Yandex-API-Key", YOUR_API_KEY)
+                urlConnection.addRequestProperty("X-Yandex-API-Key", BuildConfig.WEATHER_API_KEY)
                 //настраиваем urlConnection
                 urlConnection.requestMethod = "GET"
                 urlConnection.readTimeout = 1000
