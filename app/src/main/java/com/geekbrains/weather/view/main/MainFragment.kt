@@ -88,7 +88,6 @@ class MainFragment : Fragment() {
 
 
     private fun render(state: AppState) {
-
         when (state) {
             is AppState.Success<*> -> {
                 val weather: List<Weather> = state.data as List<Weather>

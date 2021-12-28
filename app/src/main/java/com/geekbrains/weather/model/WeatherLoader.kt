@@ -13,8 +13,6 @@ import java.util.stream.Collectors
 import javax.net.ssl.HttpsURLConnection
 
 object WeatherLoader {
-    //по хорошему ключ надо хранить в другом месте :)
-    private const val YOUR_API_KEY = "9647e93b-e919-4c2e-bef7-c2469d81615d"
 
     fun load(city: City, listener: OnWeatherLoadListener) {
 

@@ -1,19 +1,16 @@
 package com.geekbrains.weather.view.details
 
-import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.geekbrains.weather.databinding.DetailFragmentBinding
 import com.geekbrains.weather.model.Weather
 import com.geekbrains.weather.model.WeatherDTO
 import com.geekbrains.weather.model.WeatherLoader
 import com.geekbrains.weather.view.showSnackBar
-import com.google.android.material.snackbar.Snackbar
 
 class DetailFragment : Fragment() {
     companion object {
@@ -54,14 +51,14 @@ class DetailFragment : Fragment() {
                 }
 
                 override fun onFailed(throwable: Throwable) {
-                    binding.root.showSnackBar(throwable.message.toString(), "Попробовать снова", {
+                    Log.e("DEBUGLOG", throwable.message.toString())
+                    binding.root.showSnackBar("Сбой загрузки данных", "Попробовать снова", {
                         //запросили новые данные
-//                       TODO вставить действие
+                       WeatherLoader.load(weather.city)
                     })
 //                    Toast.makeText(requireContext(), throwable.message, Toast.LENGTH_LONG).show()
                 }
             })
-
         }
     }
 
