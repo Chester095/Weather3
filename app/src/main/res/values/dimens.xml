@@ -10,11 +10,12 @@
     <dimen name="recycler_item_text_size">25sp</dimen>
     <dimen name="recycler_item_line_height">1dp</dimen>
     <dimen name="recycler_item_line_margin_end">20dp</dimen>
-    <dimen name="detail_city_name_margin_top">20sp</dimen>
-    <dimen name="city_name_text_size">35sp</dimen>
+    <dimen name="detail_city_name_margin_top">10dp</dimen>
+    <dimen name="city_name_text_size">45sp</dimen>
     <dimen name="temperature_text_size">35sp</dimen>
     <dimen name="temperature_margin_top">20sp</dimen>
     <dimen name="loading_margin_top">20sp</dimen>
     <dimen name="loading_text_size">35sp</dimen>
+    <dimen name="city_coordinates_text_size">25sp</dimen>
 
 </resources>

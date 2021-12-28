@@ -19,6 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/detail_city_name_margin_top"
+            android:textColor="@color/teal_900"
             android:textSize="@dimen/city_name_text_size"
             android:textStyle="bold"
             tools:text="Москва" />
@@ -28,15 +29,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/detail_city_name_margin_top"
-            android:textSize="@dimen/city_name_text_size"
+            android:textSize="@dimen/city_coordinates_text_size"
             android:textStyle="bold"
-            tools:text="Москва" />
+            tools:text="Координаты" />
 
         <TextView
             android:id="@+id/weatherCondition"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/temperature_margin_top"
+            android:textColor="@color/teal_700"
             android:textSize="@dimen/temperature_text_size"
             android:textStyle="bold"
             tools:text="Облачно" />
@@ -46,33 +48,39 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/temperature_margin_top"
+            android:text="@string/temperature_label_text"
+            android:textColor="@color/teal_900"
             android:textSize="@dimen/temperature_text_size"
             android:textStyle="bold"
-            tools:text="10" />
+            tools:text="Температура" />
 
         <TextView
             android:id="@+id/temperatureValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/detail_city_name_margin_top"
+            android:textColor="@color/teal_700"
             android:textSize="@dimen/temperature_text_size"
             android:textStyle="bold"
-            tools:text="Москва" />
+            tools:text="-10" />
 
         <TextView
             android:id="@+id/feelsLikeLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/detail_city_name_margin_top"
+            android:textColor="@color/teal_900"
             android:textSize="@dimen/temperature_text_size"
             android:textStyle="bold"
-            tools:text="Москва" />
+            android:text="@string/feels_like_label_text"
+            tools:text="Ощущается как" />
 
         <TextView
             android:id="@+id/feelsLikeValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/temperature_margin_top"
+            android:textColor="@color/teal_700"
             android:textSize="@dimen/temperature_text_size"
             android:textStyle="bold"
             tools:text="10" />
