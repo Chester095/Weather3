@@ -54,7 +54,7 @@ class DetailFragment : Fragment() {
                     Log.e("DEBUGLOG", throwable.message.toString())
                     binding.root.showSnackBar("Сбой загрузки данных", "Попробовать снова", {
                         //запросили новые данные
-                       WeatherLoader.load(weather.city)
+                       WeatherLoader.load(weather.city, this )
                     })
 //                    Toast.makeText(requireContext(), throwable.message, Toast.LENGTH_LONG).show()
                 }
