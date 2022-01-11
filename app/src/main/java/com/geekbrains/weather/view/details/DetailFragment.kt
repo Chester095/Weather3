@@ -35,7 +35,7 @@ class DetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        arguments?.getParcelable<Weather>("WEATHER_EXTRA")?.let { weather ->
+        arguments?.getParcelable<Weather>("WEATHER_EXTRA")?.let { weather: Weather ->
 
             binding.cityName.text = weather.city.name
             binding.cityCoordinates.text = "${weather.city.lat} ${weather.city.lon}"
@@ -54,7 +54,7 @@ class DetailFragment : Fragment() {
                     Log.e("DEBUGLOG", throwable.message.toString())
                     binding.root.showSnackBar("Сбой загрузки данных", "Попробовать снова", {
                         //запросили новые данные
-                       WeatherLoader.load(weather.city, this )
+                        WeatherLoader.load(weather.city, this )
                     })
 //                    Toast.makeText(requireContext(), throwable.message, Toast.LENGTH_LONG).show()
                 }
