@@ -10,9 +10,11 @@ import com.geekbrains.weather.databinding.DetailFragmentBinding
 import com.geekbrains.weather.model.Weather
 import com.geekbrains.weather.model.WeatherDTO
 import com.geekbrains.weather.model.WeatherLoader
+import com.geekbrains.weather.model.WeatherServer
 import com.geekbrains.weather.view.showSnackBar
 
 class DetailFragment : Fragment() {
+    // фабричный статический метод
     companion object {
         fun newInstance(bundle: Bundle): DetailFragment {
             val fragment = DetailFragment()
@@ -35,7 +37,10 @@ class DetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        arguments?.getParcelable<Weather>("WEATHER_EXTRA")?.let { weather: Weather ->
+        val weatherServer : WeatherServer
+        weatherServer
+
+/*        arguments?.getParcelable<Weather>("WEATHER_EXTRA")?.let { weather: Weather ->
 
             binding.cityName.text = weather.city.name
             binding.cityCoordinates.text = "${weather.city.lat} ${weather.city.lon}"
@@ -54,12 +59,12 @@ class DetailFragment : Fragment() {
                     Log.e("DEBUGLOG", throwable.message.toString())
                     binding.root.showSnackBar("Сбой загрузки данных", "Попробовать снова", {
                         //запросили новые данные
-                        WeatherLoader.load(weather.city, this )
+                        WeatherLoader.load(weather.city, this)
                     })
 //                    Toast.makeText(requireContext(), throwable.message, Toast.LENGTH_LONG).show()
                 }
             })
-        }
+        }*/
     }
 
 

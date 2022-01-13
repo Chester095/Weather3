@@ -5,11 +5,13 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.geekbrains.weather.model.Repository
 import com.geekbrains.weather.model.RepositoryImpl
-import kotlin.random.Random
 
 class MainViewModel : ViewModel() {
+    // для хранения данных Mutable (то что можно изменить)
     private val liveDataToObserve: MutableLiveData<AppState> = MutableLiveData()
     private val repo: Repository = RepositoryImpl()
+
+    // будет возвращать данные
     fun getData(): LiveData<AppState> = liveDataToObserve
 
     fun getWeatherFromLocalStorageRus() = getDataFromLocalSource(true)
@@ -17,10 +19,10 @@ class MainViewModel : ViewModel() {
     fun getWeatherFromRemoteSource() = getDataFromLocalSource(true)
 
     private fun getDataFromLocalSource(isRussian: Boolean = true) {
+        //изменяем state (статус данных)
         liveDataToObserve.value = AppState.Loading
 
         Thread {
-            Thread.sleep(1000)
 
             val weather = if (isRussian) {
                 repo.getWeatherFromLocalStorageRus()

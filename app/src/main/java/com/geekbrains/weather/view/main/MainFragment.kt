@@ -18,9 +18,8 @@ import com.geekbrains.weather.viewmodel.AppState
 import com.geekbrains.weather.viewmodel.MainViewModel
 
 class MainFragment : Fragment() {
-
-    companion
-    object {
+    // фабричный статический метод
+    companion object {
         fun newInstance() = MainFragment()
     }
 
@@ -48,7 +47,6 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.mainRecycleView.adapter = adapter
-
         binding.mainRecycleView.layoutManager = LinearLayoutManager(requireActivity())
 
         adapter.listener = MainAdapter.OnItemClick { weather ->
@@ -65,7 +63,8 @@ class MainFragment : Fragment() {
             }
         }
 
-        // подписались на изменения live data
+        // подписались на изменения live data (передаём жизненный цикл viewLifecycleOwner и Observer )
+        // то есть когда данные изменяться вызываем перерисовку (render(state))
         viewModel.getData().observe(viewLifecycleOwner, { state -> render(state) })
 
         //запросили новые данные
@@ -87,6 +86,7 @@ class MainFragment : Fragment() {
     }
 
 
+    //метод реализует реакцию на различные состояния
     private fun render(state: AppState) {
         when (state) {
             is AppState.Success<*> -> {

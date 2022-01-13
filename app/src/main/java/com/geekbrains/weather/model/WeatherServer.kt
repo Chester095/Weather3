@@ -3,14 +3,16 @@ package com.geekbrains.weather.model
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.fragment.app.Fragment
 import com.geekbrains.weather.databinding.DetailFragmentBinding
 import com.geekbrains.weather.view.showSnackBar
 
-class WeatherServer(view: View, savedInstanceState: Bundle?) {
+class WeatherServer : Fragment() {
+
     private var _binding: DetailFragmentBinding? = null
     private val binding get() = _binding!!
 
-    arguments?.getParcelable<Weather>("WEATHER_EXTRA")?.let { weather: Weather ->
+    val weather: Unit? = arguments?.getParcelable<Weather>("WEATHER_EXTRA")?.let { weather: Weather ->
 
         binding.cityName.text = weather.city.name
         binding.cityCoordinates.text = "${weather.city.lat} ${weather.city.lon}"
@@ -29,7 +31,7 @@ class WeatherServer(view: View, savedInstanceState: Bundle?) {
                 Log.e("DEBUGLOG", throwable.message.toString())
                 binding.root.showSnackBar("Сбой загрузки данных", "Попробовать снова", {
                     //запросили новые данные
-                    WeatherLoader.load(weather.city, this )
+                    WeatherLoader.load(weather.city, this)
                 })
 //                    Toast.makeText(requireContext(), throwable.message, Toast.LENGTH_LONG).show()
             }
