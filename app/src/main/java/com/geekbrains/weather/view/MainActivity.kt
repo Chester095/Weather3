@@ -6,6 +6,7 @@ import com.geekbrains.weather.R
 import com.geekbrains.weather.databinding.ActivityMainBinding
 import com.geekbrains.weather.view.main.MainFragment
 
+// относится к View так как отвечает за отображение
 class MainActivity : AppCompatActivity() {
     private val binding: ActivityMainBinding by lazy {
         ActivityMainBinding.inflate(layoutInflater)

@@ -3,6 +3,7 @@ package com.geekbrains.weather.model
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
+// относится к Model так как отвечает за данные (как, что, где и в каком формате)
 @Parcelize
 data class Weather(
     val city: City = getDefaultCity(),

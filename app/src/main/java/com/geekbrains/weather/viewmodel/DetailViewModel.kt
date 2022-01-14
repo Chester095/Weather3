@@ -17,8 +17,6 @@ class DetailViewModel : ViewModel() {
         liveDataToObserve.value = AppState.Loading
 
         Thread {
-            Thread.sleep(1000)
-
             if (Random.nextBoolean()) {
                 val weather = repo.getWeatherFromServer()
                 liveDataToObserve.postValue(AppState.Success(weather))

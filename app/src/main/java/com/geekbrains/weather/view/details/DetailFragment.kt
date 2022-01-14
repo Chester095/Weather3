@@ -38,7 +38,7 @@ class DetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val weatherServer : WeatherServer
-        weatherServer
+//        weatherServer <- ЖАЛКАЯ ПОПЫТКА ЧТО-ТО ИЗМЕНИТЬ
 
 /*        arguments?.getParcelable<Weather>("WEATHER_EXTRA")?.let { weather: Weather ->
 

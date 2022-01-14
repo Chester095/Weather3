@@ -46,6 +46,8 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // для работы RecycleView нужен адаптер, RecycleView и layoutManager
+        //TODO 3 урок 01:57:00
         binding.mainRecycleView.adapter = adapter
         binding.mainRecycleView.layoutManager = LinearLayoutManager(requireActivity())
 
