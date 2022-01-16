@@ -18,6 +18,7 @@ class MainAdapter : RecyclerView.Adapter<MainAdapter.MainViewHolder>() {
     //когда будет дата передаваться
     fun setWeather(data: List<Weather>) {
         weatherData = data
+        //чтобы адаптер отобразил данные
         notifyDataSetChanged()
     }
 
@@ -54,7 +55,8 @@ class MainAdapter : RecyclerView.Adapter<MainAdapter.MainViewHolder>() {
 
     //функциональный интерфейс
     fun interface OnItemClick {
-        //чтобы weather была parcelable
+        // чтобы weather была parcelable
+        // целиком объект возращаем
         fun onClick(weather: Weather)
     }
 }

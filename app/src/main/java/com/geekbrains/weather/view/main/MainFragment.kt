@@ -26,7 +26,7 @@ class MainFragment : Fragment() {
     private var _binding: MainFragmentBinding? = null
     private val binding get() = _binding!!
     private val adapter = MainAdapter()
-
+    // по хорошему должна храниться в VM
     private var isRussian = true
 
 
@@ -51,6 +51,7 @@ class MainFragment : Fragment() {
         binding.mainRecycleView.adapter = adapter
         binding.mainRecycleView.layoutManager = LinearLayoutManager(requireActivity())
 
+        // реакция на нажатие с получением объекта weather
         adapter.listener = MainAdapter.OnItemClick { weather ->
 
             // apply сразу производит операцию над объектом
@@ -72,6 +73,8 @@ class MainFragment : Fragment() {
         //запросили новые данные
         viewModel.getWeatherFromLocalStorageRus()
 
+        // пока не очень красивао должно быть просто getWeatherFromLocalStorage
+        // а VM должна хранить в себе значение языка 3 урок 02:45
         binding.mainFAB.setOnClickListener {
             isRussian = !isRussian
             when {
@@ -92,6 +95,7 @@ class MainFragment : Fragment() {
     private fun render(state: AppState) {
         when (state) {
             is AppState.Success<*> -> {
+                // показываем список
                 val weather: List<Weather> = state.data as List<Weather>
                 adapter.setWeather(weather)
                 binding.loadingContainer.hide()
@@ -99,7 +103,7 @@ class MainFragment : Fragment() {
             is AppState.Error -> {
                 binding.loadingContainer.show()
                 binding.root.showSnackBar(state.error.message.toString(), "Попробовать снова", {
-                    //запросили новые данные
+                    //запросили новые данные (список городов)
                     viewModel.getWeatherFromLocalStorageRus()
                 })
             }
