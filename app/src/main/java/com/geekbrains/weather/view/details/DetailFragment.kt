@@ -37,10 +37,7 @@ class DetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val weatherServer : WeatherServer
-//        weatherServer <- ЖАЛКАЯ ПОПЫТКА ЧТО-ТО ИЗМЕНИТЬ
-
-/*        arguments?.getParcelable<Weather>("WEATHER_EXTRA")?.let { weather: Weather ->
+        arguments?.getParcelable<Weather>("WEATHER_EXTRA")?.let { weather: Weather ->
 
             binding.cityName.text = weather.city.name
             binding.cityCoordinates.text = "${weather.city.lat} ${weather.city.lon}"
@@ -64,7 +61,7 @@ class DetailFragment : Fragment() {
 //                    Toast.makeText(requireContext(), throwable.message, Toast.LENGTH_LONG).show()
                 }
             })
-        }*/
+        }
     }
 
 

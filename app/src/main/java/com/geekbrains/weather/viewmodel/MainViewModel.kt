@@ -10,13 +10,14 @@ class MainViewModel : ViewModel() {
     // для хранения данных Mutable (то что можно изменить)
     private val liveDataToObserve: MutableLiveData<AppState> = MutableLiveData()
     private val repo: Repository = RepositoryImpl()
+    var isRussian = true
 
     // будет возвращать данные
     fun getData(): LiveData<AppState> = liveDataToObserve
 
     fun getWeatherFromLocalStorageRus() = getDataFromLocalSource(true)
     fun getWeatherFromLocalStorageWorld() = getDataFromLocalSource(false)
-    fun getWeatherFromRemoteSource() = getDataFromLocalSource(true)
+    fun getWeatherFromRemoteSource() = getDataFromLocalSource(isRussian)
 
     //
     private fun getDataFromLocalSource(isRussian: Boolean = true) {

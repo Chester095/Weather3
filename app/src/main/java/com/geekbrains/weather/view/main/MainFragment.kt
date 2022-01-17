@@ -26,8 +26,6 @@ class MainFragment : Fragment() {
     private var _binding: MainFragmentBinding? = null
     private val binding get() = _binding!!
     private val adapter = MainAdapter()
-    // по хорошему должна храниться в VM
-    private var isRussian = true
 
 
     // lazy инициирует viewModel когда это будет необходимо (при первом вызове)
@@ -73,18 +71,19 @@ class MainFragment : Fragment() {
         //запросили новые данные
         viewModel.getWeatherFromLocalStorageRus()
 
-        // пока не очень красивао должно быть просто getWeatherFromLocalStorage
+        // пока не очень красиво должно быть просто getWeatherFromLocalStorage
         // а VM должна хранить в себе значение языка 3 урок 02:45
         binding.mainFAB.setOnClickListener {
-            isRussian = !isRussian
-            when {
-                isRussian -> {
-                    viewModel.getWeatherFromLocalStorageRus()
-                    binding.mainFAB.setImageResource(R.drawable.ic_russia)
-                }
-                else -> {
-                    viewModel.getWeatherFromLocalStorageWorld()
-                    binding.mainFAB.setImageResource(R.drawable.ic_baseline_outlined_flag_24)
+            with(viewModel) {
+                getWeatherFromRemoteSource()
+                isRussian = !isRussian
+                when {
+                    isRussian -> {
+                        binding.mainFAB.setImageResource(R.drawable.ic_russia)
+                    }
+                    else -> {
+                        binding.mainFAB.setImageResource(R.drawable.ic_baseline_outlined_flag_24)
+                    }
                 }
             }
         }
