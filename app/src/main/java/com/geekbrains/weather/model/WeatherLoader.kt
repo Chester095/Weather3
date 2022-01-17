@@ -16,7 +16,7 @@ object WeatherLoader {
 
     fun load(city: City, listener: OnWeatherLoadListener) {
 
-        val handler = Handler(Looper.myLooper() ?: Looper.getMainLooper())
+        Handler(Looper.myLooper() ?: Looper.getMainLooper())
 
         Thread {
 

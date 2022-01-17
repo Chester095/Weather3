@@ -9,7 +9,7 @@ import kotlin.random.Random
 
 class DetailViewModel : ViewModel() {
     private val liveDataToObserve: MutableLiveData<AppState> = MutableLiveData()
-    private val repo: Repository = RepositoryImpl()
+    private val repo: Repository = RepositoryImpl
     fun getData(): LiveData<AppState> = liveDataToObserve
 
 

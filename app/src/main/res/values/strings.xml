@@ -16,5 +16,6 @@
     <string name="feels_like_label">Ощущается как</string>
     <string name="temperature_label_text">Температура</string>
     <string name="feels_like_label_text">Ощущается как</string>
+    <string name="weather_extra">WEATHER_EXTRA</string>
 
 </resources>

@@ -45,7 +45,7 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // для работы RecycleView нужен адаптер, RecycleView и layoutManager
-        //TODO 3 урок 01:57:00
+        //TODO 6 урок 01:46:00
         binding.mainRecycleView.adapter = adapter
         binding.mainRecycleView.layoutManager = LinearLayoutManager(requireActivity())
 

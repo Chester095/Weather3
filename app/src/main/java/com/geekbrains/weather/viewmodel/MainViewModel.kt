@@ -9,7 +9,7 @@ import com.geekbrains.weather.model.RepositoryImpl
 class MainViewModel : ViewModel() {
     // для хранения данных Mutable (то что можно изменить)
     private val liveDataToObserve: MutableLiveData<AppState> = MutableLiveData()
-    private val repo: Repository = RepositoryImpl()
+    private val repo: Repository = RepositoryImpl
     var isRussian = true
 
     // будет возвращать данные
