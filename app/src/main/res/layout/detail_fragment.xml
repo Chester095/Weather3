@@ -48,7 +48,8 @@
             android:layout_marginTop="@dimen/temperature_margin_top"
             android:textSize="@dimen/temperature_text_size"
             android:textStyle="bold"
-            tools:text="10" />
+            android:text="Температура"
+            tools:text="Температура" />
 
         <TextView
             android:id="@+id/temperatureValue"
@@ -57,7 +58,7 @@
             android:layout_marginTop="@dimen/detail_city_name_margin_top"
             android:textSize="@dimen/temperature_text_size"
             android:textStyle="bold"
-            tools:text="Москва" />
+            tools:text="10" />
 
         <TextView
             android:id="@+id/feelsLikeLabel"
@@ -66,6 +67,7 @@
             android:layout_marginTop="@dimen/detail_city_name_margin_top"
             android:textSize="@dimen/temperature_text_size"
             android:textStyle="bold"
+            android:text="Ощущается"
             tools:text="Москва" />
 
         <TextView
