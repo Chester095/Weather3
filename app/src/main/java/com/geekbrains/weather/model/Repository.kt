@@ -9,9 +9,9 @@ interface Repository {
 
     fun weatherLoaded(weather: Weather?)
     fun addLoadedListener(listener: OnLoadListener)
-    interface OnLoadListener {
-        fun onLoaded() {
+    fun removeLoadedListener(listener: OnLoadListener)
 
-        }
+    fun interface OnLoadListener {
+        fun onLoaded()
     }
 }

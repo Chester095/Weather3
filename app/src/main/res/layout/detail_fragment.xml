@@ -12,6 +12,7 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical"
+        android:background="@color/teal_200"
         tools:context=".view.MainFragment">
 
         <TextView
@@ -28,9 +29,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/detail_city_name_margin_top"
-            android:textSize="@dimen/city_name_text_size"
+            android:textSize="@dimen/city_coordinates_text_size"
             android:textStyle="bold"
-            tools:text="Москва" />
+            tools:text="213551355136 513513515135" />
 
         <TextView
             android:id="@+id/weatherCondition"

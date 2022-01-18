@@ -25,6 +25,7 @@ class MainIntentService : IntentService("MainIntentService") {
                             getString(R.string.weather_extra), Weather(
                                 temperature = weatherDTO.fact?.temp ?: 0,
                                 feelsLike = weatherDTO.fact?.feelsLike ?: 0,
+                                condition = weatherDTO.fact?.condition ?: "0"
                             )
                         )
                     })

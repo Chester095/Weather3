@@ -16,53 +16,40 @@ object WeatherLoader {
 
     fun load(city: City, listener: OnWeatherLoadListener) {
 
-        Handler(Looper.myLooper() ?: Looper.getMainLooper())
+        var urlConnection: HttpsURLConnection? = null
 
-        Thread {
+        //handler в него отправляем команду потоку от куда идёт выполнение
+        val handler = Handler(Looper.getMainLooper())
 
-            var urlConnection: HttpsURLConnection? = null
+        try {
+            val uri = URL("https://api.weather.yandex.ru/v2/informers?Lat=${city.lat}&lon=${city.lon}")
 
-            //handler в него отправляем команду потоку от куда идёт выполнение
-            val handler = Handler(Looper.getMainLooper())
-
-            try {
-                val uri = URL("https://api.weather.yandex.ru/v2/informers?Lat=${city.lat}&lon=${city.lon}")
-
-                urlConnection = uri.openConnection() as HttpsURLConnection
-                //передаём в urlConnection  наш ключ
-                urlConnection.addRequestProperty("X-Yandex-API-Key", BuildConfig.WEATHER_API_KEY)
-                //настраиваем urlConnection
-                urlConnection.requestMethod = "GET"
-                urlConnection.readTimeout = 1000
-                urlConnection.connectTimeout = 1000
-                //настраиваем ридер
-                val reader = BufferedReader(InputStreamReader(urlConnection.inputStream))
-                val result = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    reader.lines().collect(Collectors.joining("\n"))
-                } else {
-                    ""
-                }
-
-                Log.d("DEBUGLOG", "result: $result")
-
-                //преобразует Gson в объект WeatherDTO
-                val weatherDTO = Gson().fromJson(result, WeatherDTO::class.java)
-
-                handler.post {
-                    listener.onLoaded(weatherDTO)
-                }
-
-            } catch (e: Exception) {
-                //любое обращение к listener надо завернуть в handler
-                handler.post {
-                    listener.onFailed(e)
-                }
-
-                Log.e("DEBUGLOG", "FAIL CONNECTION", e)
-            } finally {
-                urlConnection?.disconnect()
+            urlConnection = uri.openConnection() as HttpsURLConnection
+            //передаём в urlConnection  наш ключ
+            urlConnection.addRequestProperty("X-Yandex-API-Key", BuildConfig.WEATHER_API_KEY)
+            //настраиваем urlConnection
+            urlConnection.requestMethod = "GET"
+            urlConnection.readTimeout = 1000
+            urlConnection.connectTimeout = 1000
+            //настраиваем ридер
+            val reader = BufferedReader(InputStreamReader(urlConnection.inputStream))
+            val result = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                reader.lines().collect(Collectors.joining("\n"))
+            } else {
+                ""
             }
-        }.start()
+
+            Log.d("DEBUGLOG", "result: $result")
+
+            //преобразует Gson в объект WeatherDTO
+            val weatherDTO = Gson().fromJson(result, WeatherDTO::class.java)
+            listener.onLoaded(weatherDTO)
+        } catch (e: Exception) {
+            listener.onFailed(e)
+            Log.e("DEBUGLOG", "FAIL CONNECTION", e)
+        } finally {
+            urlConnection?.disconnect()
+        }
     }
 
     interface OnWeatherLoadListener {

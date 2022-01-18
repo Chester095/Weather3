@@ -13,10 +13,16 @@ object RepositoryImpl : Repository {
 
     override fun weatherLoaded(weather: Weather?) {
         this.weather = weather
+        // уведомляем все Listener, что погода получена
+        listeners.forEach { it.onLoaded() }
     }
 
     override fun addLoadedListener(listener: Repository.OnLoadListener) {
         listeners.add(listener)
+    }
+
+    override fun removeLoadedListener(listener: Repository.OnLoadListener) {
+        listeners.remove(listener)
     }
 
 

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.geekbrains.weather.R
 import com.geekbrains.weather.databinding.DetailFragmentBinding
@@ -20,6 +21,14 @@ class DetailFragment : Fragment() {
         }
     }
 
+    private val listener = Repository.OnLoadListener {
+        RepositoryImpl.getWeatherFromServer()?.let { weather ->
+            binding.weatherCondition.text = weather.condition
+            binding.temperatureValue.text = weather.temperature.toString()
+            binding.feelsLikeValue.text = weather.feelsLike.toString()
+            Toast.makeText(context, "Данные подгрузились", Toast.LENGTH_LONG).show()
+        } ?: Toast.makeText(context, "ОШИБКА", Toast.LENGTH_LONG).show()
+    }
     private var _binding: DetailFragmentBinding? = null
     private val binding get() = _binding!!
 
@@ -34,43 +43,29 @@ class DetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //подпишемся на репозиторий Listener
+        RepositoryImpl.addLoadedListener(listener)
+
+
         arguments?.getParcelable<Weather>(getString(R.string.weather_extra))?.let { weather: Weather ->
 
             binding.cityName.text = weather.city.name
             binding.cityCoordinates.text = "${weather.city.lat} ${weather.city.lon}"
 
             //запускаем сервисы
-            requireActivity().startService(Intent(requireContext(),MainIntentService::class.java).apply {
+            requireActivity().startService(Intent(requireContext(), MainIntentService::class.java).apply {
                 // кладём туда данные
                 putExtra(getString(R.string.weather_extra), weather)
 
             })
-
-
-/*            WeatherLoader.load(weather.city, object : WeatherLoader.OnWeatherLoadListener {
-                override fun onLoaded(weatherDTO: WeatherDTO) {
-                    weatherDTO.fact?.let { fact ->
-                        binding.weatherCondition.text = fact.condition
-                        binding.temperatureValue.text = fact.temp?.toString()
-                        binding.feelsLikeValue.text = fact.feelsLike?.toString()
-                    }
-                }
-
-                override fun onFailed(throwable: Throwable) {
-                    Log.e("DEBUGLOG", throwable.message.toString())
-                    binding.root.showSnackBar("Сбой загрузки данных", "Попробовать снова", {
-                        //запросили новые данные
-                        WeatherLoader.load(weather.city, this)
-                    })
-//                    Toast.makeText(requireContext(), throwable.message, Toast.LENGTH_LONG).show()
-                }
-            })*/
         }
     }
 
 
     override fun onDestroy() {
         super.onDestroy()
+        // отписываемся от репозиторий Listener
+        RepositoryImpl.removeLoadedListener(listener)
         _binding = null
     }
 }
