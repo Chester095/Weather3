@@ -22,15 +22,18 @@ class MainWorker(context: Context, workerParams: WorkerParameters) : Worker(cont
 
     // запускается с помощью "других штук" ))
     companion object {
-        fun startWorker() {
+        fun startWorker(context: Context) {
             // OneTimeWorkRequest - один раз
             val uploadWorkRequest: WorkRequest =
-                OneTimeWorkRequest.Builder(MainWorker::class.java) // можем критерии добавить
-                    .setConstraints(Constraints.Builder()
-                        .setRequiresCharging(true) // задача не выполнится пока телефон не встанет на зарядку
-                        .setRequiredNetworkType(NetworkType.UNMETERED) // задача не выполнится, безлимитный интернет
-                        .build()) // привязки
+                OneTimeWorkRequest.Builder(MainWorker::class.java) // можем критерии добавить при которых срабатывает загрузка
+                    .setConstraints(
+                        Constraints.Builder()
+                            .setRequiredNetworkType(NetworkType.CONNECTED) // задача выполнится когда пояаится  интернет
+                            .build()
+                    ) // привязки
                     .build()
+            // enqueue - запланировать вот такой  Request -> uploadWorkRequest
+            WorkManager.getInstance(context).enqueue(uploadWorkRequest)
         }
     }
 
