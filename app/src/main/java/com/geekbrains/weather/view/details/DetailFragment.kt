@@ -2,6 +2,7 @@ package com.geekbrains.weather.view.details
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +15,7 @@ import com.geekbrains.weather.model.*
 class DetailFragment : Fragment() {
     // фабричный статический метод
     companion object {
+        val TAG = "DetailFragment"
         fun newInstance(bundle: Bundle): DetailFragment {
             val fragment = DetailFragment()
             fragment.arguments = bundle
@@ -22,13 +24,16 @@ class DetailFragment : Fragment() {
     }
 
     private val listener = Repository.OnLoadListener {
+        Log.d(TAG, "RepositoryImpl.getWeatherFromServer()  "
+        + RepositoryImpl.getWeatherFromServer()?.condition)
         RepositoryImpl.getWeatherFromServer()?.let { weather ->
             binding.weatherCondition.text = weather.condition
             binding.temperatureValue.text = weather.temperature.toString()
             binding.feelsLikeValue.text = weather.feelsLike.toString()
             Toast.makeText(context, "Данные подгрузились", Toast.LENGTH_LONG).show()
-        } ?: Toast.makeText(context, "ОШИБКА", Toast.LENGTH_LONG).show()
+        } ?: Toast.makeText(context, "ОШИБКА DetailFragment: listener", Toast.LENGTH_LONG).show()
     }
+
     private var _binding: DetailFragmentBinding? = null
     private val binding get() = _binding!!
 

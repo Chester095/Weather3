@@ -12,7 +12,7 @@ class MainIntentService : IntentService("MainIntentService") {
     }
 
     override fun onHandleIntent(intent: Intent?) {
-        Log.d(TAG, "onHandleIntent ^")
+        Log.d(TAG, "current thread : " + Thread.currentThread().name)
 
         // надо получить данные
         intent?.getParcelableExtra<Weather>(getString(R.string.weather_extra))?.let { weather ->
@@ -21,11 +21,14 @@ class MainIntentService : IntentService("MainIntentService") {
                     // после загрузки надо от нашего контекста...
                     applicationContext.sendBroadcast(Intent(applicationContext, MainReceiver::class.java).apply {
                         action = MainReceiver.WEATHER_LOAD_SUCCESS
-                        putExtra(
-                            getString(R.string.weather_extra), Weather(
+                        Log.d(TAG, "WEATHER_LOAD_SUCCESS")
+                        Log.d(TAG, "WEATHER_LOAD_SUCCESS " + weatherDTO.fact?.temp)
+                        Log.d(TAG, "WEATHER_LOAD_SUCCESS " + weatherDTO.fact?.feelsLike)
+                        Log.d(TAG, "WEATHER_LOAD_SUCCESS " + weatherDTO.fact?.condition)
+                        putExtra(getString(R.string.weather_extra), Weather(
                                 temperature = weatherDTO.fact?.temp ?: 0,
                                 feelsLike = weatherDTO.fact?.feelsLike ?: 0,
-                                condition = weatherDTO.fact?.condition ?: "0"
+                                condition = weatherDTO.fact?.condition ?: ""
                             )
                         )
                     })
