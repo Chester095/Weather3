@@ -4,7 +4,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.util.Log
-import com.geekbrains.weather.R
+import android.widget.Toast
 
 // обычный BroadcastReceiver
 class MainReceiver : BroadcastReceiver() {
@@ -25,6 +25,19 @@ class MainReceiver : BroadcastReceiver() {
             }
             WEATHER_LOAD_FAILED -> {RepositoryImpl.weatherLoaded(null)
             Log.d("WEATHER_LOAD_FAILED ", "intent.action"+   intent.action)}
+        }
+    }
+}
+
+class MainBroadcastReceiver : BroadcastReceiver() {
+
+    override fun onReceive(context: Context, intent: Intent) {
+        StringBuilder().apply {
+            append("СООБЩЕНИЕ ОТ СИСТЕМЫ\n")
+            append("Action: ${intent.action}")
+            toString().also {
+                Toast.makeText(context, it, Toast.LENGTH_LONG).show()
+            }
         }
     }
 }

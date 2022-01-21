@@ -4,15 +4,30 @@ import android.app.IntentService
 import android.content.Intent
 import android.util.Log
 import com.geekbrains.weather.R
+import com.geekbrains.weather.view.details.DetailFragment.Companion.TEST_BROADCAST_INTENT_FILTER
+import com.geekbrains.weather.view.details.DetailFragment.Companion.THREADS_FRAGMENT_BROADCAST_EXTRA
 
 class MainIntentService : IntentService("MainIntentService") {
 
     companion object {
+        const val MAIN_SERVICE_INT_EXTRA = "MainServiceIntExtra"
         const val TAG = "MainIntentService"
     }
 
+    //Отправка уведомления о завершении сервиса
+    private fun sendBack(result: String) {
+        val broadcastIntent = Intent(TEST_BROADCAST_INTENT_FILTER)
+        broadcastIntent.putExtra(THREADS_FRAGMENT_BROADCAST_EXTRA, result)
+        sendBroadcast(broadcastIntent)
+    }
+
     override fun onHandleIntent(intent: Intent?) {
-        Log.d(TAG, "current thread : " + Thread.currentThread().name)
+        Log.d(TAG, "onHandleIntent ^")
+
+        intent?.let {
+            sendBack(it.getIntExtra(MAIN_SERVICE_INT_EXTRA, 0).toString())
+        }
+
 
         // надо получить данные
         intent?.getParcelableExtra<Weather>(getString(R.string.weather_extra))?.let { weather ->
@@ -21,14 +36,11 @@ class MainIntentService : IntentService("MainIntentService") {
                     // после загрузки надо от нашего контекста...
                     applicationContext.sendBroadcast(Intent(applicationContext, MainReceiver::class.java).apply {
                         action = MainReceiver.WEATHER_LOAD_SUCCESS
-                        Log.d(TAG, "WEATHER_LOAD_SUCCESS")
-                        Log.d(TAG, "WEATHER_LOAD_SUCCESS " + weatherDTO.fact?.temp)
-                        Log.d(TAG, "WEATHER_LOAD_SUCCESS " + weatherDTO.fact?.feelsLike)
-                        Log.d(TAG, "WEATHER_LOAD_SUCCESS " + weatherDTO.fact?.condition)
-                        putExtra(getString(R.string.weather_extra), Weather(
+                        putExtra(
+                            getString(R.string.weather_extra), Weather(
                                 temperature = weatherDTO.fact?.temp ?: 0,
                                 feelsLike = weatherDTO.fact?.feelsLike ?: 0,
-                                condition = weatherDTO.fact?.condition ?: ""
+                                condition = weatherDTO.fact?.condition ?: "0"
                             )
                         )
                     })
