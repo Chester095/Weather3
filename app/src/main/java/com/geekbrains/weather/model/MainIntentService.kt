@@ -31,7 +31,7 @@ class MainIntentService : IntentService("MainIntentService") {
 
         // надо получить данные
         intent?.getParcelableExtra<Weather>(getString(R.string.weather_extra))?.let { weather ->
-            WeatherLoader.load(weather.city, object : WeatherLoader.OnWeatherLoadListener {
+            WeatherLoader.loadRetrofit(weather.city, object : WeatherLoader.OnWeatherLoadListener {
                 override fun onLoaded(weatherDTO: WeatherDTO) {
                     // после загрузки надо от нашего контекста...
                     applicationContext.sendBroadcast(Intent(applicationContext, MainReceiver::class.java).apply {
@@ -40,7 +40,8 @@ class MainIntentService : IntentService("MainIntentService") {
                             getString(R.string.weather_extra), Weather(
                                 temperature = weatherDTO.fact?.temp ?: 0,
                                 feelsLike = weatherDTO.fact?.feelsLike ?: 0,
-                                condition = weatherDTO.fact?.condition ?: "0"
+                                condition = weatherDTO.fact?.condition ?: "",
+                                icon = weatherDTO.fact?.icon ?: "0"
                             )
                         )
                     })

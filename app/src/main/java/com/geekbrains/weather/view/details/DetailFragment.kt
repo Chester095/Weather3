@@ -12,10 +12,15 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
+import coil.ImageLoader
+import coil.decode.SvgDecoder
+import coil.request.ImageRequest
 import com.geekbrains.weather.R
 import com.geekbrains.weather.databinding.DetailFragmentBinding
-import com.geekbrains.weather.model.*
-import com.geekbrains.weather.model.MainIntentService.Companion.MAIN_SERVICE_INT_EXTRA
+import com.geekbrains.weather.model.MainIntentService
+import com.geekbrains.weather.model.Repository
+import com.geekbrains.weather.model.RepositoryImpl
+import com.geekbrains.weather.model.Weather
 
 class DetailFragment : Fragment() {
     // фабричный статический метод
@@ -51,6 +56,29 @@ class DetailFragment : Fragment() {
             binding.weatherCondition.text = weather.condition
             binding.temperatureValue.text = weather.temperature.toString()
             binding.feelsLikeValue.text = weather.feelsLike.toString()
+
+/*            // подгружаем картинку
+            binding.weatherImageView.load("https://picsum.photos/id/237/300/300"){
+                crossfade(true)
+                placeholder(R.drawable.ic_russia)
+                transformations(CircleCropTransformation())
+            }*/
+
+            Log.d(TAG, "https://yastatic.net/weather/i/icons/funky/dark/${weather.icon}.svg")
+            val request = ImageRequest.Builder(requireContext())
+                // указываем от куда будем загружать
+                .data("https://yastatic.net/weather/i/icons/funky/dark/${weather.icon}.svg")
+                // и куда
+                .target(binding.weatherImageView)
+                .build()
+
+            ImageLoader.Builder(requireContext())
+                .componentRegistry { add(SvgDecoder(requireContext())) }
+                .build()
+                .enqueue(request)
+
+
+
             Toast.makeText(context, "Данные подгрузились", Toast.LENGTH_LONG).show()
         } ?: Toast.makeText(context, "ОШИБКА DetailFragment: listener", Toast.LENGTH_LONG).show()
     }
@@ -96,16 +124,6 @@ class DetailFragment : Fragment() {
         }
     }
 
-/*    private fun initServiceWithBroadcastButton() {
-        context?.let {
-            it.startService(Intent(it, MainIntentService::class.java).apply {
-                putExtra(
-                    MAIN_SERVICE_INT_EXTRA, we
-                )
-            })
-        }
-
-    }*/
 
     override fun onDestroy() {
         super.onDestroy()

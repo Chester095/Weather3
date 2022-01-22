@@ -11,6 +11,7 @@ data class Weather(
     val temperature: Int = 0,
     val feelsLike: Int = 0,
     val condition: String = "",
+    val icon: String = "",
 ) : Parcelable
 
 
