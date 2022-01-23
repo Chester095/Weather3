@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import coil.ImageLoader
 import coil.decode.SvgDecoder
@@ -21,6 +22,7 @@ import com.geekbrains.weather.model.MainIntentService
 import com.geekbrains.weather.model.Repository
 import com.geekbrains.weather.model.RepositoryImpl
 import com.geekbrains.weather.model.Weather
+import com.geekbrains.weather.viewmodel.DetailViewModel
 
 class DetailFragment : Fragment() {
     // фабричный статический метод
@@ -35,19 +37,15 @@ class DetailFragment : Fragment() {
         }
     }
 
-    private val testReceiver: BroadcastReceiver = object : BroadcastReceiver() {
-        override fun onReceive(context: Context, intent: Intent) {
-            //Достаём данные из интента
-            intent.getStringExtra(THREADS_FRAGMENT_BROADCAST_EXTRA)?.let {
-                Log.d(
-                    TAG, "testReceiver:  "
-                            + intent.getStringExtra(THREADS_FRAGMENT_BROADCAST_EXTRA)
-                )
-            }
-        }
+
+    private val viewModel: DetailViewModel by lazy {
+        ViewModelProvider(this).get(DetailViewModel::class.java)
     }
 
+
     private val listener = Repository.OnLoadListener {
+
+
         Log.d(
             TAG, "RepositoryImpl.getWeatherFromServer()  "
                     + RepositoryImpl.getWeatherFromServer()?.condition
@@ -56,13 +54,6 @@ class DetailFragment : Fragment() {
             binding.weatherCondition.text = weather.condition
             binding.temperatureValue.text = weather.temperature.toString()
             binding.feelsLikeValue.text = weather.feelsLike.toString()
-
-/*            // подгружаем картинку
-            binding.weatherImageView.load("https://picsum.photos/id/237/300/300"){
-                crossfade(true)
-                placeholder(R.drawable.ic_russia)
-                transformations(CircleCropTransformation())
-            }*/
 
             Log.d(TAG, "https://yastatic.net/weather/i/icons/funky/dark/${weather.icon}.svg")
             val request = ImageRequest.Builder(requireContext())
@@ -77,10 +68,24 @@ class DetailFragment : Fragment() {
                 .build()
                 .enqueue(request)
 
+            viewModel.saveHistory(weather)
+
 
 
             Toast.makeText(context, "Данные подгрузились", Toast.LENGTH_LONG).show()
         } ?: Toast.makeText(context, "ОШИБКА DetailFragment: listener", Toast.LENGTH_LONG).show()
+    }
+
+    private val testReceiver: BroadcastReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context, intent: Intent) {
+            //Достаём данные из интента
+            intent.getStringExtra(THREADS_FRAGMENT_BROADCAST_EXTRA)?.let {
+                Log.d(
+                    TAG, "testReceiver:  "
+                            + intent.getStringExtra(THREADS_FRAGMENT_BROADCAST_EXTRA)
+                )
+            }
+        }
     }
 
     private var _binding: DetailFragmentBinding? = null
@@ -122,6 +127,7 @@ class DetailFragment : Fragment() {
 
             })
         }
+
     }
 
 
