@@ -39,17 +39,16 @@ class DetailFragment : Fragment() {
 
 
     private val viewModel: DetailViewModel by lazy {
-        ViewModelProvider(this).get(DetailViewModel::class.java)
+        ViewModelProvider(this)[DetailViewModel::class.java]
     }
 
 
     private val listener = Repository.OnLoadListener {
 
-
-        Log.d(
-            TAG, "RepositoryImpl.getWeatherFromServer()  "
-                    + RepositoryImpl.getWeatherFromServer()?.condition
-        )
+        Log.d(TAG, "RepositoryImpl.getWeatherFromServer()  " + RepositoryImpl.getWeatherFromServer()?.city)
+        Log.d(TAG, "RepositoryImpl.getWeatherFromServer()  " + RepositoryImpl.getWeatherFromServer()?.condition)
+        Log.d(TAG, "RepositoryImpl.getWeatherFromServer()  " + RepositoryImpl.getWeatherFromServer()?.temperature)
+        Log.d(TAG, "RepositoryImpl.getWeatherFromServer()  " + RepositoryImpl.getWeatherFromServer()?.feelsLike)
         RepositoryImpl.getWeatherFromServer()?.let { weather ->
             binding.weatherCondition.text = weather.condition
             binding.temperatureValue.text = weather.temperature.toString()

@@ -12,6 +12,7 @@ class HistoryActivity : AppCompatActivity() {
         setContentView(R.layout.activity_history)
 
         findViewById<RecyclerView>(R.id.history_recycle_view).apply{
+            // получаем данные из нашей БД
             adapter = HistoryAdapter(LocalRepositoryImpl(App.getHistoryDao()).getAllHistory()).also {
                 it.notifyDataSetChanged()
             }

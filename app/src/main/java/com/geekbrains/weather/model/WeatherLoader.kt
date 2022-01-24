@@ -79,8 +79,9 @@ object WeatherLoader {
         .addInterceptor(HttpLoggingInterceptor().apply {
             setLevel(HttpLoggingInterceptor.Level.BODY)
         })
-
         .build()
+
+
     private val weatherAPI: WeatherAPI = Retrofit.Builder()
         .baseUrl("https://api.weather.yandex.ru/")
         .client(client)
@@ -90,6 +91,7 @@ object WeatherLoader {
 
         // retrofit за нас сгенировал методы WeatherAPI
         .create(WeatherAPI::class.java)
+
 
     fun loadRetrofit(city: City, listener: OnWeatherLoadListener) {
 

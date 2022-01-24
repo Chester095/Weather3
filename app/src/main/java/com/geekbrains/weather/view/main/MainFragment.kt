@@ -1,5 +1,6 @@
 package com.geekbrains.weather.view.main
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.geekbrains.weather.R
 import com.geekbrains.weather.databinding.MainFragmentBinding
+import com.geekbrains.weather.model.HistoryActivity
 import com.geekbrains.weather.model.Weather
 import com.geekbrains.weather.view.details.DetailFragment
 import com.geekbrains.weather.view.hide
@@ -45,7 +47,7 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // для работы RecycleView нужен адаптер, RecycleView и layoutManager
-        //TODO 8 урок 02:29:00
+        //TODO 8 урок 02:29:00 - 02:36:00  не работает. Чтото с потоками. НАдо отдельный запускать.
         binding.mainRecycleView.adapter = adapter
         binding.mainRecycleView.layoutManager = LinearLayoutManager(requireActivity())
 
@@ -86,6 +88,11 @@ class MainFragment : Fragment() {
                     }
                 }
             }
+        }
+
+        // по нажатию historyFAB откроем активити
+        binding.historyFAB.setOnClickListener {
+            requireContext().startActivity(Intent(requireContext(), HistoryActivity::class.java))
         }
     }
 

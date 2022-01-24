@@ -38,6 +38,7 @@ class MainIntentService : IntentService("MainIntentService") {
                         action = MainReceiver.WEATHER_LOAD_SUCCESS
                         putExtra(
                             getString(R.string.weather_extra), Weather(
+                                city = weather.city,
                                 temperature = weatherDTO.fact?.temp ?: 0,
                                 feelsLike = weatherDTO.fact?.feelsLike ?: 0,
                                 condition = weatherDTO.fact?.condition ?: "",
