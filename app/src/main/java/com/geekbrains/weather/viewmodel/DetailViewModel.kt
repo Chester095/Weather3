@@ -1,5 +1,6 @@
 package com.geekbrains.weather.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -17,6 +18,7 @@ class DetailViewModel : ViewModel() {
     fun getData(): LiveData<AppState> = liveDataToObserve
 
     fun saveHistory(weather: Weather) {
+        Log.d("!!! DetailViewModel", " saveHistory $weather")
         localRepo.saveEntity(weather)
     }
 

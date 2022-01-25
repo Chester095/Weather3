@@ -16,15 +16,15 @@ class MainReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context, intent: Intent) {
 
-        Log.d("MainReceiver", "onReceive $intent}")
+        Log.d("!!! MainReceiver", "onReceive $intent}")
 
         when (intent.action) {
             WEATHER_LOAD_SUCCESS -> {
                 RepositoryImpl.weatherLoaded(intent.extras?.getParcelable("WEATHER_EXTRA"))
-                Log.d("WEATHER_LOAD_SUCCESS ", "intent.action"+   RepositoryImpl.weatherLoaded(intent.extras?.getParcelable("WEATHER_EXTRA")))
+                Log.d("!!! WEATHER_LOAD_SUCCESS ", "intent.action"+   RepositoryImpl.weatherLoaded(intent.extras?.getParcelable("WEATHER_EXTRA")))
             }
             WEATHER_LOAD_FAILED -> {RepositoryImpl.weatherLoaded(null)
-            Log.d("WEATHER_LOAD_FAILED ", "intent.action"+   intent.action)}
+            Log.d("!!! WEATHER_LOAD_FAILED ", "intent.action"+   intent.action)}
         }
     }
 }

@@ -18,16 +18,13 @@ import coil.decode.SvgDecoder
 import coil.request.ImageRequest
 import com.geekbrains.weather.R
 import com.geekbrains.weather.databinding.DetailFragmentBinding
-import com.geekbrains.weather.model.MainIntentService
-import com.geekbrains.weather.model.Repository
-import com.geekbrains.weather.model.RepositoryImpl
-import com.geekbrains.weather.model.Weather
+import com.geekbrains.weather.model.*
 import com.geekbrains.weather.viewmodel.DetailViewModel
 
 class DetailFragment : Fragment() {
     // фабричный статический метод
     companion object {
-        val TAG = "DetailFragment"
+        const val TAG = "!!! DetailFragment"
         const val TEST_BROADCAST_INTENT_FILTER = "TEST BROADCAST INTENT FILTER"
         const val THREADS_FRAGMENT_BROADCAST_EXTRA = "THREADS_FRAGMENT_EXTRA"
         fun newInstance(bundle: Bundle): DetailFragment {
@@ -45,10 +42,11 @@ class DetailFragment : Fragment() {
 
     private val listener = Repository.OnLoadListener {
 
-        Log.d(TAG, "RepositoryImpl.getWeatherFromServer()  " + RepositoryImpl.getWeatherFromServer()?.city)
-        Log.d(TAG, "RepositoryImpl.getWeatherFromServer()  " + RepositoryImpl.getWeatherFromServer()?.condition)
-        Log.d(TAG, "RepositoryImpl.getWeatherFromServer()  " + RepositoryImpl.getWeatherFromServer()?.temperature)
-        Log.d(TAG, "RepositoryImpl.getWeatherFromServer()  " + RepositoryImpl.getWeatherFromServer()?.feelsLike)
+        Log.d(TAG, "!!! RepositoryImpl.getWeatherFromServer()  " + RepositoryImpl.getWeatherFromServer()?.city)
+        Log.d(TAG, "!!! RepositoryImpl.getWeatherFromServer()  " + RepositoryImpl.getWeatherFromServer()?.condition)
+        Log.d(TAG, "!!! RepositoryImpl.getWeatherFromServer()  " + RepositoryImpl.getWeatherFromServer()?.temperature)
+        Log.d(TAG, "!!! RepositoryImpl.getWeatherFromServer()  " + RepositoryImpl.getWeatherFromServer()?.feelsLike)
+
         RepositoryImpl.getWeatherFromServer()?.let { weather ->
             binding.weatherCondition.text = weather.condition
             binding.temperatureValue.text = weather.temperature.toString()
@@ -67,11 +65,12 @@ class DetailFragment : Fragment() {
                 .build()
                 .enqueue(request)
 
-            viewModel.saveHistory(weather)
-
-
-
+            // TODO возможно отдельный поток и не нужен
+            Thread {
+                viewModel.saveHistory(weather)
+            }.start()
             Toast.makeText(context, "Данные подгрузились", Toast.LENGTH_LONG).show()
+
         } ?: Toast.makeText(context, "ОШИБКА DetailFragment: listener", Toast.LENGTH_LONG).show()
     }
 
@@ -95,6 +94,7 @@ class DetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         context?.let {
+            MainWorker.startWorker(it)
             LocalBroadcastManager.getInstance(it)
                 .registerReceiver(testReceiver, IntentFilter(TEST_BROADCAST_INTENT_FILTER))
             Log.d(

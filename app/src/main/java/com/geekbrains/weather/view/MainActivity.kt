@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction()
             .add(R.id.main_container, MainFragment.newInstance())
             .commit()
-        MainWorker.startWorker(this)
+//        MainWorker.startWorker(this)
     }
 
     override fun onDestroy() {

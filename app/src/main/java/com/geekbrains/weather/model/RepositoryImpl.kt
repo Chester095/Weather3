@@ -4,7 +4,7 @@ import android.util.Log
 
 object RepositoryImpl : Repository {
 
-    private const val TAG = "RepositoryImpl "
+    private const val TAG = "!!! RepositoryImpl "
     private val listeners: MutableList<Repository.OnLoadListener> = mutableListOf()
     private var weather: Weather? = null
 

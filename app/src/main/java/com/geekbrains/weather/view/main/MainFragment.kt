@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.geekbrains.weather.R
 import com.geekbrains.weather.databinding.MainFragmentBinding
-import com.geekbrains.weather.model.HistoryActivity
+import com.geekbrains.weather.view.HistoryActivity
 import com.geekbrains.weather.model.Weather
 import com.geekbrains.weather.view.details.DetailFragment
 import com.geekbrains.weather.view.hide
@@ -47,7 +47,7 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // для работы RecycleView нужен адаптер, RecycleView и layoutManager
-        //TODO 8 урок 02:29:00 - 02:36:00  не работает. Чтото с потоками. НАдо отдельный запускать.
+        // TODO 8 урок 02:29:00 - 02:36:00  не работает. Чтото с потоками. НАдо отдельный запускать.
         binding.mainRecycleView.adapter = adapter
         binding.mainRecycleView.layoutManager = LinearLayoutManager(requireActivity())
 

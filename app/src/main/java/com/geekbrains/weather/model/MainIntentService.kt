@@ -11,7 +11,7 @@ class MainIntentService : IntentService("MainIntentService") {
 
     companion object {
         const val MAIN_SERVICE_INT_EXTRA = "MainServiceIntExtra"
-        const val TAG = "MainIntentService"
+        const val TAG = "!!! MainIntentService"
     }
 
     //Отправка уведомления о завершении сервиса

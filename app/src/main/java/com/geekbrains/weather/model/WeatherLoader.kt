@@ -46,14 +46,14 @@ object WeatherLoader {
                 ""
             }
 
-            Log.d("DEBUGLOG", "result: $result")
+            Log.d("!!! DEBUGLOG", "result: $result")
 
             //преобразует Gson в объект WeatherDTO
             val weatherDTO = Gson().fromJson(result, WeatherDTO::class.java)
             listener.onLoaded(weatherDTO)
         } catch (e: Exception) {
             listener.onFailed(e)
-            Log.e("DEBUGLOG", "FAIL CONNECTION", e)
+            Log.e("!!! DEBUGLOG", "FAIL CONNECTION", e)
         } finally {
             urlConnection?.disconnect()
         }
@@ -105,7 +105,7 @@ object WeatherLoader {
                         response.body()?.let { listener.onLoaded(it) }
                     } else {
                         listener.onFailed(Exception(response.message()))
-                        Log.e("DEBUGLOG", "FAIL CONNECTION  $response")
+                        Log.e("!!! DEBUGLOG", "FAIL CONNECTION  $response")
                     }
                 }
 
@@ -129,7 +129,7 @@ object WeatherLoader {
             .enqueue(object : Callback {
                 override fun onFailure(call: Call, e: IOException) {
                     listener.onFailed(e)
-                    Log.e("DEBUGLOG", "FAIL CONNECTION", e)
+                    Log.e("!!! DEBUGLOG", "FAIL CONNECTION", e)
                 }
 
                 override fun onResponse(call: Call, response: Response) {
@@ -138,7 +138,7 @@ object WeatherLoader {
                         listener.onLoaded(weatherDTO)
                     } else {
                         listener.onFailed(Exception(response.body?.string()))
-                        Log.e("DEBUGLOG", "FAIL CONNECTION  $response")
+                        Log.e("!!! DEBUGLOG", "FAIL CONNECTION  $response")
                     }
                 }
             })
