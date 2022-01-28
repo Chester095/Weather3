@@ -15,20 +15,20 @@ class SettingsActivity : AppCompatActivity() {
     @SuppressLint("NotifyDataSetChanged", "UseSwitchCompatOrMaterialCode", "CommitPrefEdits")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_settings)
         val actionBar = supportActionBar
         actionBar!!.title = "Настройки"
         Log.d("!!! SettingsActivity", " onCreate")
-        setContentView(R.layout.activity_settings)
         val btn = findViewById<SwitchCompat>(R.id.switch_button_dark_theme)
 
         val APP_PREFERENCES = "mysettings"
         val mSettings: SharedPreferences = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE)
         val APP_NIGHTMODE = "NIGHTMODE"
         val editor: SharedPreferences.Editor = mSettings.edit()
-        if(mSettings.contains(APP_NIGHTMODE)){
+        if (mSettings.contains(APP_NIGHTMODE)) {
             if (mSettings.getBoolean(APP_NIGHTMODE, true)) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-
+                btn.isChecked
             } else {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             }

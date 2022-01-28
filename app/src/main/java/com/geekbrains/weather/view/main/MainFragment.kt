@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import androidx.annotation.MainThread
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
@@ -43,8 +44,15 @@ class MainFragment : Fragment() {
         return binding.root
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        Log.d(TAG, " onCreate")
+        setHasOptionsMenu(true)
+        super.onCreate(savedInstanceState)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        Log.d(TAG, " onViewCreated")
         initToolbar()
 
         // для работы RecycleView нужен адаптер, RecycleView и layoutManager
@@ -105,10 +113,12 @@ class MainFragment : Fragment() {
         super.onCreateOptionsMenu(menu, inflater)
     }
 
+
     /*** Инициализация Toolbar
      *
      */
     private fun initToolbar() {
+        Log.d(TAG, " initToolbar made")
         val toolbar: Toolbar = requireView().findViewById(R.id.toolbar)
         (activity as AppCompatActivity?)!!.setSupportActionBar(toolbar)
     }
