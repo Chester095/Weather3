@@ -9,7 +9,7 @@
         android:id="@+id/FirstFragment"
         android:name="com.geekbrains.weather.view.main.MainFragment"
         android:label="@string/first_fragment_label"
-        tools:layout="@layout/detail_fragment">
+        tools:layout="@layout/fragment_detail">
 
         <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"

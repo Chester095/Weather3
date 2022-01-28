@@ -17,7 +17,7 @@ import coil.ImageLoader
 import coil.decode.SvgDecoder
 import coil.request.ImageRequest
 import com.geekbrains.weather.R
-import com.geekbrains.weather.databinding.DetailFragmentBinding
+import com.geekbrains.weather.databinding.FragmentDetailBinding
 import com.geekbrains.weather.model.*
 import com.geekbrains.weather.viewmodel.DetailViewModel
 
@@ -86,7 +86,7 @@ class DetailFragment : Fragment() {
         }
     }
 
-    private var _binding: DetailFragmentBinding? = null
+    private var _binding: FragmentDetailBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -103,7 +103,7 @@ class DetailFragment : Fragment() {
             )
         }
 
-        _binding = DetailFragmentBinding.inflate(inflater, container, false)
+        _binding = FragmentDetailBinding.inflate(inflater, container, false)
         return binding.root
     }
 

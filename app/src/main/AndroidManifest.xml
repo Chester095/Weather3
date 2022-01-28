@@ -15,6 +15,9 @@
         <activity
             android:name=".view.HistoryActivity"
             android:exported="false" />
+        <activity
+            android:name=".view.SettingsActivity"
+            android:exported="false" />
 
         <receiver
             android:name=".model.MainReceiver"

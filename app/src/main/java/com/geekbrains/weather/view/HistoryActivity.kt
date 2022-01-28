@@ -13,6 +13,8 @@ class HistoryActivity : AppCompatActivity() {
     @SuppressLint("NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val actionBar = supportActionBar
+        actionBar!!.title = "История запросов"
         setContentView(R.layout.activity_history)
         Log.d("!!! HistoryActivity", " setContentView")
 

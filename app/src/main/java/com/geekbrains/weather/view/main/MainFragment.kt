@@ -10,14 +10,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.geekbrains.weather.R
-import com.geekbrains.weather.databinding.MainFragmentBinding
+import com.geekbrains.weather.databinding.FragmentMainBinding
 import com.geekbrains.weather.model.Weather
-import com.geekbrains.weather.view.HistoryActivity
+import com.geekbrains.weather.view.*
 import com.geekbrains.weather.view.details.DetailFragment
-import com.geekbrains.weather.view.details.SettingsFragment
-import com.geekbrains.weather.view.hide
-import com.geekbrains.weather.view.show
-import com.geekbrains.weather.view.showSnackBar
 import com.geekbrains.weather.viewmodel.AppState
 import com.geekbrains.weather.viewmodel.MainViewModel
 
@@ -28,7 +24,7 @@ class MainFragment : Fragment() {
         const val TAG = "!!! MainFragment"
     }
 
-    private var _binding: MainFragmentBinding? = null
+    private var _binding: FragmentMainBinding? = null
     private val binding get() = _binding!!
     private val adapter = MainAdapter()
 
@@ -43,7 +39,7 @@ class MainFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         setHasOptionsMenu(true)
-        _binding = MainFragmentBinding.inflate(inflater, container, false)
+        _binding = FragmentMainBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -93,11 +89,6 @@ class MainFragment : Fragment() {
                 }
             }
         }
-
-        // по нажатию historyFAB откроем активити
-        binding.historyFAB.setOnClickListener {
-            requireContext().startActivity(Intent(requireContext(), HistoryActivity::class.java))
-        }
     }
 
     /*** Чтобы наш активити узнал о существовании меню.
@@ -130,7 +121,7 @@ class MainFragment : Fragment() {
      */
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.action_settings) {
-            requireContext().startActivity(Intent(requireContext(), SettingsFragment::class.java))
+            requireContext().startActivity(Intent(requireContext(), SettingsActivity::class.java))
             return true
         } else if (item.itemId == R.id.action_history) {
             requireContext().startActivity(Intent(requireContext(), HistoryActivity::class.java))

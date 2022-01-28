@@ -6,7 +6,7 @@
     android:layout_margin="@dimen/margin_note_edit"
     android:background="@color/white"
     android:orientation="vertical"
-    tools:context=".view.MainActivity">
+    tools:context=".view.SettingsActivity">
 
     <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/switch_button_dark_theme"

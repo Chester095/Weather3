@@ -29,15 +29,6 @@
         android:src="@drawable/ic_baseline_outlined_flag_24"
         app:maxImageSize="@dimen/fab_icon_size" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/historyFAB"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_marginBottom="15dp"
-        android:layout_marginEnd="90dp"
-        android:src="@drawable/ic_earth"
-        app:maxImageSize="@dimen/fab_icon_size" />
 
     <LinearLayout
         android:id="@+id/loadingContainer"
