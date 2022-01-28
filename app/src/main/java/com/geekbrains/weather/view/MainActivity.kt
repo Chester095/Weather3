@@ -1,9 +1,12 @@
 package com.geekbrains.weather.view
 
+import android.content.Context
 import android.content.IntentFilter
+import android.content.SharedPreferences
 import android.net.ConnectivityManager
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import com.geekbrains.weather.R
 import com.geekbrains.weather.databinding.ActivityMainBinding
 import com.geekbrains.weather.model.MainBroadcastReceiver
@@ -19,6 +22,20 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // подгружаем тему из SharedPreferences
+        val APP_PREFERENCES = "mysettings"
+        val mSettings: SharedPreferences = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE)
+        val APP_NIGHTMODE = "NIGHTMODE"
+        if(mSettings.contains(APP_NIGHTMODE)){
+            if (mSettings.getBoolean(APP_NIGHTMODE, true)) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            }
+        }
+
+
         setContentView(binding.root)
         // созданый ресивер регистрируем через метод registerReceiver
         registerReceiver(receiver, IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION))
