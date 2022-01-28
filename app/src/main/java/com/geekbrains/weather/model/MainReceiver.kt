@@ -35,9 +35,9 @@ class MainBroadcastReceiver : BroadcastReceiver() {
         StringBuilder().apply {
             append("СООБЩЕНИЕ ОТ СИСТЕМЫ\n")
             append("Action: ${intent.action}")
-            toString().also {
+            toString()/*.also {
                 Toast.makeText(context, it, Toast.LENGTH_LONG).show()
-            }
+            }*/
         }
     }
 }

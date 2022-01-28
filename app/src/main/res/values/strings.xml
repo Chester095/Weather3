@@ -17,5 +17,13 @@
     <string name="temperature_label_text">Температура</string>
     <string name="feels_like_label_text">Ощущается как</string>
     <string name="weather_extra">WEATHER_EXTRA</string>
+    <string name="switch_button_dark_theme">Включить тёмную тему</string>
+    <string name="switch_button_add_date">"Добавлять текущую "</string>
+    <string name="text_view_main_font">Размер основного шрифта</string>
+    <string name="text_view_optional_font">Размер дополнительного шрифта</string>
+    <string name="popup_menu_item_delete">Удалить</string>
+    <string name="popup_menu_item_duplicate">Дублировать</string>
+    <string name="popup_menu_item_edit">Заполнить файл тестовыми данными</string>
+    <string name="action_history">История запросов</string>
 
 </resources>
