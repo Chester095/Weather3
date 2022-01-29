@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:padding="8dp"
-    tools:context=".view.HistoryActivity">
+    tools:context=".view.activities.HistoryActivity">
 
     <TextView
         android:id="@+id/city_label"

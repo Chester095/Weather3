@@ -5,16 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        app:title="@string/app_name"
-        android:background="@color/teal_900"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/main_recycle_view"
-        android:layout_marginTop="57dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"

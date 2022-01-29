@@ -1,4 +1,4 @@
-package com.geekbrains.weather.view
+package com.geekbrains.weather.view.activities
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.geekbrains.weather.R
 import com.geekbrains.weather.model.HistoryAdapter
 import com.geekbrains.weather.model.LocalRepositoryImpl
+import com.geekbrains.weather.view.App
 
 class HistoryActivity : AppCompatActivity() {
     @SuppressLint("NotifyDataSetChanged")

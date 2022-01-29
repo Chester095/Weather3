@@ -22,5 +22,6 @@
     <dimen name="padding_vh">14dp</dimen>
     <dimen name="margin_note_edit">14dp</dimen>
     <dimen name="card_view_corner_radius">16dp</dimen>
+    <dimen name="contacts_text_size">20sp</dimen>
 
 </resources>

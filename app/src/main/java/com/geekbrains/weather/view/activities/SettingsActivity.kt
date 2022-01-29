@@ -1,4 +1,4 @@
-package com.geekbrains.weather.view
+package com.geekbrains.weather.view.activities
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -28,9 +28,10 @@ class SettingsActivity : AppCompatActivity() {
         if (mSettings.contains(APP_NIGHTMODE)) {
             if (mSettings.getBoolean(APP_NIGHTMODE, true)) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                btn.isChecked
+                btn.isChecked = true
             } else {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                btn.isChecked = false
             }
         }
 

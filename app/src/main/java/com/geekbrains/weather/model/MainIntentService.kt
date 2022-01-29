@@ -4,8 +4,8 @@ import android.app.IntentService
 import android.content.Intent
 import android.util.Log
 import com.geekbrains.weather.R
-import com.geekbrains.weather.view.details.DetailFragment.Companion.TEST_BROADCAST_INTENT_FILTER
-import com.geekbrains.weather.view.details.DetailFragment.Companion.THREADS_FRAGMENT_BROADCAST_EXTRA
+import com.geekbrains.weather.view.fragments.DetailFragment.Companion.TEST_BROADCAST_INTENT_FILTER
+import com.geekbrains.weather.view.fragments.DetailFragment.Companion.THREADS_FRAGMENT_BROADCAST_EXTRA
 
 class MainIntentService : IntentService("MainIntentService") {
 
