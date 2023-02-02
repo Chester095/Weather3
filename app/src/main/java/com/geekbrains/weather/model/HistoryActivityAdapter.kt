@@ -7,11 +7,12 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.geekbrains.weather.R
 
-class HistoryAdapter(private var items: List<Weather>) : RecyclerView.Adapter<HistoryAdapter.HistoryItemViewHolder>() {
+class HistoryActivityAdapter(private var items: List<Weather>) : RecyclerView.Adapter<HistoryActivityAdapter.HistoryItemViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryItemViewHolder {
-        return HistoryItemViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.history_item_layout, parent, false))
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.history_item_layout, parent, false)
+        return HistoryItemViewHolder(itemView)
     }
 
     override fun onBindViewHolder(holder: HistoryItemViewHolder, position: Int) {

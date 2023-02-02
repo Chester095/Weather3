@@ -6,12 +6,12 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.geekbrains.weather.R
-import com.geekbrains.weather.model.HistoryAdapter
+import com.geekbrains.weather.model.HistoryActivityAdapter
 import com.geekbrains.weather.model.LocalRepositoryImpl
 import com.geekbrains.weather.view.App
 
 class HistoryActivity : AppCompatActivity() {
-    @SuppressLint("NotifyDataSetChanged")
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val actionBar = supportActionBar
@@ -23,7 +23,7 @@ class HistoryActivity : AppCompatActivity() {
             Log.d("!!! HistoryActivity", " findViewById")
             // получаем данные из нашей БД
             Thread {
-                adapter = HistoryAdapter(LocalRepositoryImpl(App.getHistoryDao()).getAllHistory()).also {
+                adapter = HistoryActivityAdapter(LocalRepositoryImpl(App.getHistoryDao()).getAllHistory()).also {
                     it.notifyDataSetChanged()
                 }
             }.start()

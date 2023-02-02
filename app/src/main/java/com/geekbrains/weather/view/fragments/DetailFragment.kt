@@ -69,7 +69,7 @@ class DetailFragment : Fragment() {
             Thread {
                 viewModel.saveHistory(weather)
             }.start()
-            Toast.makeText(context, "Данные подгрузились", Toast.LENGTH_LONG).show()
+//            Toast.makeText(context, "Данные подгрузились", Toast.LENGTH_LONG).show()
 
         } ?: Toast.makeText(context, "ОШИБКА DetailFragment: listener", Toast.LENGTH_LONG).show()
     }
@@ -78,10 +78,10 @@ class DetailFragment : Fragment() {
         override fun onReceive(context: Context, intent: Intent) {
             //Достаём данные из интента
             intent.getStringExtra(THREADS_FRAGMENT_BROADCAST_EXTRA)?.let {
-                Log.d(
+/*                Log.d(
                     TAG, "testReceiver:  "
                             + intent.getStringExtra(THREADS_FRAGMENT_BROADCAST_EXTRA)
-                )
+                )*/
             }
         }
     }
