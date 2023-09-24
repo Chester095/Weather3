@@ -29,15 +29,12 @@ class MainActivity : AppCompatActivity() {
 
 
         // подгружаем тему из SharedPreferences
-        val APP_PREFERENCES = "mysettings"
-        val mSettings: SharedPreferences = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE)
-        val APP_NIGHTMODE = "NIGHTMODE"
+        val mSettings: SharedPreferences = getSharedPreferences(getString(R.string.APP_PREFERENCES), Context.MODE_PRIVATE)
         mSettings.edit()
 
-        if (mSettings.contains(APP_NIGHTMODE)) {
-            if (mSettings.getBoolean(APP_NIGHTMODE, true)) {
+        if (mSettings.contains(getString(R.string.APP_NIGHTMODE))) {
+            if (mSettings.getBoolean(getString(R.string.APP_NIGHTMODE), true)) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-
             } else {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             }
@@ -49,7 +46,6 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction()
             .add(R.id.main_container, MainFragment.newInstance())
             .commit()
-//        MainWorker.startWorker(this)
     }
 
     /*** Чтобы наш активити узнал о существовании меню.
@@ -87,14 +83,7 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
-/*    *//*** Инициализация Toolbar
-     *
-     *//*
-    private fun initToolbar() {
-        Log.d(MainFragment.TAG, " initToolbar made")
-        val toolbar: Toolbar = findViewById(R.id.toolbar)
-        (activity as AppCompatActivity?)!!.setSupportActionBar(toolbar)
-    }*/
+
 
     override fun onDestroy() {
         // снимаем подписку

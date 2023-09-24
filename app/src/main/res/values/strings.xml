@@ -25,6 +25,8 @@
     <string name="popup_menu_item_duplicate">Дублировать</string>
     <string name="popup_menu_item_edit">Заполнить файл тестовыми данными</string>
     <string name="action_history">История запросов</string>
-    <string name="action_contacts">Контакты</string>
+    <string name="APP_PREFERENCES">mysettings</string>
+    <string name="APP_NIGHTMODE">NIGHTMODE</string>
+
 
 </resources>
