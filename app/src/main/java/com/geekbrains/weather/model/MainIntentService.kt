@@ -11,7 +11,6 @@ class MainIntentService : IntentService("MainIntentService") {
 
     companion object {
         const val MAIN_SERVICE_INT_EXTRA = "MainServiceIntExtra"
-        const val TAG = "!!! MainIntentService"
     }
 
     //Отправка уведомления о завершении сервиса
@@ -22,8 +21,6 @@ class MainIntentService : IntentService("MainIntentService") {
     }
 
     override fun onHandleIntent(intent: Intent?) {
-        Log.d(TAG, "onHandleIntent ^")
-
         intent?.let {
             sendBack(it.getIntExtra(MAIN_SERVICE_INT_EXTRA, 0).toString())
         }
@@ -60,18 +57,8 @@ class MainIntentService : IntentService("MainIntentService") {
     }
 
 
-    override fun onCreate() {
-        super.onCreate()
-        Log.d(TAG, "onCreate")
-    }
-
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        Log.d(TAG, "onStartCommand $intent}")
         return super.onStartCommand(intent, flags, startId)
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.d(TAG, "onDestroy")
-    }
 }

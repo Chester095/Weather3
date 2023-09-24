@@ -3,7 +3,6 @@ package com.geekbrains.weather.model
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 
 // обычный BroadcastReceiver
 class MainReceiver : BroadcastReceiver() {
@@ -14,9 +13,6 @@ class MainReceiver : BroadcastReceiver() {
     }
 
     override fun onReceive(context: Context, intent: Intent) {
-
-        Log.d("!!! MainReceiver", "onReceive $intent}")
-
         if (intent.action == WEATHER_LOAD_SUCCESS) {
             RepositoryImpl.weatherLoaded(intent.extras?.getParcelable("WEATHER_EXTRA"))
         } else if (intent.action == WEATHER_LOAD_FAILED) {

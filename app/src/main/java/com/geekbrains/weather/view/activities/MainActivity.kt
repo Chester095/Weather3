@@ -20,7 +20,6 @@ import com.geekbrains.weather.view.fragments.MainFragment
 // относится к View так как отвечает за отображение
 class MainActivity : AppCompatActivity() {
     private val receiver = MainBroadcastReceiver()
-    private val TAG = "!!! MainActivity "
     private val binding: ActivityMainBinding by lazy {
         ActivityMainBinding.inflate(layoutInflater)
     }
@@ -33,12 +32,7 @@ class MainActivity : AppCompatActivity() {
         val APP_PREFERENCES = "mysettings"
         val mSettings: SharedPreferences = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE)
         val APP_NIGHTMODE = "NIGHTMODE"
-        val editor: SharedPreferences.Editor = mSettings.edit()
-/*        Log.d(TAG,"  APP_NIGHTMODE  " + mSettings.getBoolean(APP_NIGHTMODE,true))
-        editor.putBoolean(APP_NIGHTMODE, false)
-            .apply()*/
-
-        Log.d(TAG, "  APP_NIGHTMODE  " + mSettings.getBoolean(APP_NIGHTMODE, true))
+        mSettings.edit()
 
         if (mSettings.contains(APP_NIGHTMODE)) {
             if (mSettings.getBoolean(APP_NIGHTMODE, true)) {
@@ -67,7 +61,6 @@ class MainActivity : AppCompatActivity() {
      * @return
      */
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        Log.d(TAG, " onCreateOptionsMenu  $menu")
         menuInflater.inflate(R.menu.menu_main, menu)
         return super.onCreateOptionsMenu(menu)
     }
@@ -79,18 +72,20 @@ class MainActivity : AppCompatActivity() {
      * @return
      */
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.action_settings) {
-            startActivity(Intent(this, SettingsActivity::class.java))
-            return true
-        } else if (item.itemId == R.id.action_history) {
-            startActivity(Intent(this, HistoryActivity::class.java))
-            return true
-        } else if (item.itemId == R.id.action_history) {
-            startActivity(Intent(this, ContactsActivity::class.java))
-            return true
+        return when (item.itemId) {
+            R.id.action_settings -> {
+                startActivity(Intent(this, SettingsActivity::class.java))
+                true
+            }
+
+            R.id.action_history -> {
+                startActivity(Intent(this, HistoryActivity::class.java))
+                true
+            }
+
+            else -> super.onOptionsItemSelected(item)
         }
 
-        return super.onOptionsItemSelected(item)
     }
 /*    *//*** Инициализация Toolbar
      *
@@ -100,9 +95,6 @@ class MainActivity : AppCompatActivity() {
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         (activity as AppCompatActivity?)!!.setSupportActionBar(toolbar)
     }*/
-
-
-
 
     override fun onDestroy() {
         // снимаем подписку

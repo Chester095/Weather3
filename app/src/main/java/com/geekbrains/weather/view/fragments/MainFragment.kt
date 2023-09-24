@@ -1,16 +1,19 @@
 package com.geekbrains.weather.view.fragments
 
 import android.os.Bundle
-import android.util.Log
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.geekbrains.weather.R
 import com.geekbrains.weather.databinding.FragmentMainBinding
 import com.geekbrains.weather.model.Weather
-import com.geekbrains.weather.view.*
+import com.geekbrains.weather.view.hide
 import com.geekbrains.weather.view.main.MainAdapter
+import com.geekbrains.weather.view.show
+import com.geekbrains.weather.view.showSnackBar
 import com.geekbrains.weather.viewmodel.AppState
 import com.geekbrains.weather.viewmodel.MainViewModel
 
@@ -18,7 +21,6 @@ class MainFragment : Fragment() {
     // фабричный статический метод
     companion object {
         fun newInstance() = MainFragment()
-        const val TAG = "!!! MainFragment"
     }
 
     private var _binding: FragmentMainBinding? = null
@@ -43,7 +45,6 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Log.d(TAG, " onViewCreated")
 
         // для работы RecycleView нужен адаптер, RecycleView и layoutManager
         binding.mainRecycleView.adapter = adapter

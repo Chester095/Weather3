@@ -26,7 +26,7 @@ object WeatherLoader {
         var urlConnection: HttpsURLConnection? = null
 
         //handler в него отправляем команду потоку от куда идёт выполнение
-        val handler = Handler(Looper.getMainLooper())
+        Handler(Looper.getMainLooper())
 
         try {
             val uri = URL("https://api.weather.yandex.ru/v2/informers?Lat=${city.lat}&lon=${city.lon}")

@@ -42,11 +42,6 @@ class DetailFragment : Fragment() {
 
     private val listener = Repository.OnLoadListener {
 
-        Log.d(TAG, "!!! RepositoryImpl.getWeatherFromServer()  " + RepositoryImpl.getWeatherFromServer()?.city)
-        Log.d(TAG, "!!! RepositoryImpl.getWeatherFromServer()  " + RepositoryImpl.getWeatherFromServer()?.condition)
-        Log.d(TAG, "!!! RepositoryImpl.getWeatherFromServer()  " + RepositoryImpl.getWeatherFromServer()?.temperature)
-        Log.d(TAG, "!!! RepositoryImpl.getWeatherFromServer()  " + RepositoryImpl.getWeatherFromServer()?.feelsLike)
-
         RepositoryImpl.getWeatherFromServer()?.let { weather ->
             binding.weatherCondition.text = weather.condition
             binding.temperatureValue.text = weather.temperature.toString()
@@ -69,8 +64,6 @@ class DetailFragment : Fragment() {
             Thread {
                 viewModel.saveHistory(weather)
             }.start()
-//            Toast.makeText(context, "Данные подгрузились", Toast.LENGTH_LONG).show()
-
         } ?: Toast.makeText(context, "ОШИБКА DetailFragment: listener", Toast.LENGTH_LONG).show()
     }
 
@@ -78,10 +71,6 @@ class DetailFragment : Fragment() {
         override fun onReceive(context: Context, intent: Intent) {
             //Достаём данные из интента
             intent.getStringExtra(THREADS_FRAGMENT_BROADCAST_EXTRA)?.let {
-/*                Log.d(
-                    TAG, "testReceiver:  "
-                            + intent.getStringExtra(THREADS_FRAGMENT_BROADCAST_EXTRA)
-                )*/
             }
         }
     }
@@ -97,10 +86,6 @@ class DetailFragment : Fragment() {
             MainWorker.startWorker(it)
             LocalBroadcastManager.getInstance(it)
                 .registerReceiver(testReceiver, IntentFilter(TEST_BROADCAST_INTENT_FILTER))
-            Log.d(
-                TAG, "onCreateView:  "
-                        + LocalBroadcastManager.getInstance(it).toString()
-            )
         }
 
         _binding = FragmentDetailBinding.inflate(inflater, container, false)

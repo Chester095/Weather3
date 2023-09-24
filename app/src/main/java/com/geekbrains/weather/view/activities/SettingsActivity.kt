@@ -18,7 +18,6 @@ class SettingsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_settings)
         val actionBar = supportActionBar
         actionBar!!.title = "Настройки"
-        Log.d("!!! SettingsActivity", " onCreate")
         val btn = findViewById<SwitchCompat>(R.id.switch_button_dark_theme)
 
         val APP_PREFERENCES = "mysettings"
@@ -35,7 +34,6 @@ class SettingsActivity : AppCompatActivity() {
             }
         }
 
-
         btn.setOnCheckedChangeListener { _, isChecked ->
             if (btn.isChecked) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
@@ -48,8 +46,6 @@ class SettingsActivity : AppCompatActivity() {
             }
         }
 
-
         editor.putBoolean(APP_NIGHTMODE, true)
-
     }
 }

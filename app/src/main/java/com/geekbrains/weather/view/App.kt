@@ -17,7 +17,6 @@ class App : Application() {
 
     // будем хранить БД в статическом
     companion object {
-        private const val TAG = "App"
         private var appInstance: App? = null
 
         // сама БД
@@ -29,7 +28,6 @@ class App : Application() {
         // инициализация БД
         fun getHistoryDao(): HistoryDAO {
             if (db == null) {
-                Log.d(TAG, "History.db  db != null")
                 synchronized(HistoryDB::class.java) {
                     if (db == null) {
                         appInstance?.let { app ->

@@ -17,10 +17,6 @@
 
     </style>
 
-    <style name="Theme.Weather.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
 
     <style name="Theme.Weather.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 

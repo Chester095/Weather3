@@ -1,8 +1,6 @@
 package com.geekbrains.weather.view.activities
 
-import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.geekbrains.weather.R
@@ -17,10 +15,8 @@ class HistoryActivity : AppCompatActivity() {
         val actionBar = supportActionBar
         actionBar!!.title = "История запросов"
         setContentView(R.layout.activity_history)
-        Log.d("!!! HistoryActivity", " setContentView")
 
         findViewById<RecyclerView>(R.id.history_recycle_view).apply {
-            Log.d("!!! HistoryActivity", " findViewById")
             // получаем данные из нашей БД
             Thread {
                 adapter = HistoryActivityAdapter(LocalRepositoryImpl(App.getHistoryDao()).getAllHistory()).also {
@@ -29,6 +25,5 @@ class HistoryActivity : AppCompatActivity() {
             }.start()
 
         }
-        Log.d("!!! HistoryActivity", " adapter")
     }
 }

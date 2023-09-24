@@ -1,14 +1,12 @@
 package com.geekbrains.weather.model
 
-import android.util.Log
-import android.widget.Toast
-import java.util.*
+import java.util.Date
+
 
 class LocalRepositoryImpl(private val dao: HistoryDAO) : LocalRepository {
 
     override fun getAllHistory(): List<Weather> {
-        Log.d("!!! LocalRepositoryImpl getAllHistory",  " start")
-        return dao.all()
+        return dao.getAll()
             // преобразуем из таблиц
             .map { entity ->
                 Weather(
@@ -17,7 +15,6 @@ class LocalRepositoryImpl(private val dao: HistoryDAO) : LocalRepository {
                     condition = entity.condition
                 )
             }
-        Log.d("LocalRepositoryImpl getAllHistory",  " finish")
     }
 
     override fun saveEntity(weather: Weather) {

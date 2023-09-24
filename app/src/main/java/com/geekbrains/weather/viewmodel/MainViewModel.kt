@@ -16,7 +16,6 @@ class MainViewModel : ViewModel() {
     fun getData(): LiveData<AppState> = liveDataToObserve
 
     fun getWeatherFromLocalStorageRus() = getDataFromLocalSource(true)
-    fun getWeatherFromLocalStorageWorld() = getDataFromLocalSource(false)
     fun getWeatherFromRemoteSource() = getDataFromLocalSource(isRussian)
 
     //
@@ -25,7 +24,6 @@ class MainViewModel : ViewModel() {
         liveDataToObserve.value = AppState.Loading
 
         Thread {
-
             val weather = if (isRussian) {
                 repo.getWeatherFromLocalStorageRus()
             } else {
@@ -35,6 +33,4 @@ class MainViewModel : ViewModel() {
             liveDataToObserve.postValue(AppState.Success(weather))
         }.start()
     }
-
-
 }
