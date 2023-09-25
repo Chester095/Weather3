@@ -7,10 +7,6 @@ import android.util.Log
 
 class WeatherService : Service() {
 
-    companion object{
-        const val TAG = "!!! WeatherService"
-    }
-
     override fun onBind(p0: Intent?): IBinder? {
         return null
     }

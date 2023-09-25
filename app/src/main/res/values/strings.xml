@@ -15,7 +15,6 @@
     <string name="temperature_label">Температура</string>
     <string name="feels_like_label">Ощущается как</string>
     <string name="temperature_label_text">Температура</string>
-    <string name="feels_like_label_text">Ощущается как</string>
     <string name="weather_extra">WEATHER_EXTRA</string>
     <string name="switch_button_dark_theme">Включить тёмную тему</string>
     <string name="switch_button_add_date">"Добавлять текущую "</string>
@@ -24,9 +23,14 @@
     <string name="popup_menu_item_delete">Удалить</string>
     <string name="popup_menu_item_duplicate">Дублировать</string>
     <string name="popup_menu_item_edit">Заполнить файл тестовыми данными</string>
-    <string name="action_history">История запросов</string>
     <string name="APP_PREFERENCES">mysettings</string>
     <string name="APP_NIGHTMODE">NIGHTMODE</string>
+    <string name="settings">Настройки</string>
+    <string name="history_request">История запросов</string>
+    <string name="TEST_BROADCAST_INTENT_FILTER">TEST BROADCAST INTENT FILTER</string>
+    <string name="THREADS_FRAGMENT_BROADCAST_EXTRA">THREADS_FRAGMENT_EXTRA</string>
+    <string name="error_loading_data">ОШИБКА загрузки данных с сервера</string>
+    <string name="try_again">Попробовать снова</string>
 
 
 </resources>

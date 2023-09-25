@@ -14,7 +14,6 @@ class MainAdapter : RecyclerView.Adapter<MainAdapter.MainViewHolder>() {
     private var weatherData: List<Weather> = listOf()
     var listener: OnItemClick? = null
 
-
     //когда будет дата передаваться
     fun setWeather(data: List<Weather>) {
         weatherData = data
@@ -49,7 +48,6 @@ class MainAdapter : RecyclerView.Adapter<MainAdapter.MainViewHolder>() {
                     listener?.onClick(weather)
                 }
             }
-
         }
     }
 

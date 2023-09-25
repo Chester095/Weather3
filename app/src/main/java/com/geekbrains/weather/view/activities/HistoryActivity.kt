@@ -13,7 +13,7 @@ class HistoryActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val actionBar = supportActionBar
-        actionBar!!.title = "История запросов"
+        actionBar!!.title = getString(R.string.history_request)
         setContentView(R.layout.activity_history)
 
         findViewById<RecyclerView>(R.id.history_recycle_view).apply {

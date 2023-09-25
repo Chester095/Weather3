@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,15 +17,16 @@ import coil.decode.SvgDecoder
 import coil.request.ImageRequest
 import com.geekbrains.weather.R
 import com.geekbrains.weather.databinding.FragmentDetailBinding
-import com.geekbrains.weather.model.*
+import com.geekbrains.weather.model.MainIntentService
+import com.geekbrains.weather.model.MainWorker
+import com.geekbrains.weather.model.Repository
+import com.geekbrains.weather.model.RepositoryImpl
+import com.geekbrains.weather.model.Weather
 import com.geekbrains.weather.viewmodel.DetailViewModel
 
 class DetailFragment : Fragment() {
     // фабричный статический метод
     companion object {
-        const val TAG = "!!! DetailFragment"
-        const val TEST_BROADCAST_INTENT_FILTER = "TEST BROADCAST INTENT FILTER"
-        const val THREADS_FRAGMENT_BROADCAST_EXTRA = "THREADS_FRAGMENT_EXTRA"
         fun newInstance(bundle: Bundle): DetailFragment {
             val fragment = DetailFragment()
             fragment.arguments = bundle
@@ -34,11 +34,9 @@ class DetailFragment : Fragment() {
         }
     }
 
-
     private val viewModel: DetailViewModel by lazy {
         ViewModelProvider(this)[DetailViewModel::class.java]
     }
-
 
     private val listener = Repository.OnLoadListener {
 
@@ -47,9 +45,8 @@ class DetailFragment : Fragment() {
             binding.temperatureValue.text = weather.temperature.toString()
             binding.feelsLikeValue.text = weather.feelsLike.toString()
 
-            Log.d(TAG, "https://yastatic.net/weather/i/icons/funky/dark/${weather.icon}.svg")
             val request = ImageRequest.Builder(requireContext())
-                // указываем от куда будем загружать
+                // указываем откуда будем загружать
                 .data("https://yastatic.net/weather/i/icons/funky/dark/${weather.icon}.svg")
                 // и куда
                 .target(binding.weatherImageView)
@@ -60,17 +57,16 @@ class DetailFragment : Fragment() {
                 .build()
                 .enqueue(request)
 
-            // TODO возможно отдельный поток и не нужен
             Thread {
                 viewModel.saveHistory(weather)
             }.start()
-        } ?: Toast.makeText(context, "ОШИБКА DetailFragment: listener", Toast.LENGTH_LONG).show()
+        } ?: Toast.makeText(context, getString(R.string.error_loading_data), Toast.LENGTH_LONG).show()
     }
 
     private val testReceiver: BroadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
             //Достаём данные из интента
-            intent.getStringExtra(THREADS_FRAGMENT_BROADCAST_EXTRA)?.let {
+            intent.getStringExtra(getString(R.string.THREADS_FRAGMENT_BROADCAST_EXTRA))?.let {
             }
         }
     }
@@ -85,7 +81,7 @@ class DetailFragment : Fragment() {
         context?.let {
             MainWorker.startWorker(it)
             LocalBroadcastManager.getInstance(it)
-                .registerReceiver(testReceiver, IntentFilter(TEST_BROADCAST_INTENT_FILTER))
+                .registerReceiver(testReceiver, IntentFilter(getString(R.string.TEST_BROADCAST_INTENT_FILTER)))
         }
 
         _binding = FragmentDetailBinding.inflate(inflater, container, false)
@@ -111,9 +107,7 @@ class DetailFragment : Fragment() {
 
             })
         }
-
     }
-
 
     override fun onDestroy() {
         super.onDestroy()

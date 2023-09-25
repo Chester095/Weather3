@@ -55,7 +55,7 @@ class MainFragment : Fragment() {
 
             // apply сразу производит операцию над объектом
             // also же работает с копией объекта
-            val bundle = Bundle().apply { putParcelable("WEATHER_EXTRA", weather) }
+            val bundle = Bundle().apply { putParcelable(getString(R.string.weather_extra), weather) }
 
             activity?.supportFragmentManager?.apply {
                 beginTransaction()
@@ -102,7 +102,7 @@ class MainFragment : Fragment() {
             }
             is AppState.Error -> {
                 binding.loadingContainer.show()
-                binding.root.showSnackBar(state.error.message.toString(), "Попробовать снова", {
+                binding.root.showSnackBar(state.error.message.toString(), getString(R.string.try_again), {
                     //запросили новые данные (список городов)
                     viewModel.getWeatherFromLocalStorageRus()
                 })

@@ -4,12 +4,10 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SwitchCompat
 import com.geekbrains.weather.R
-
 
 class SettingsActivity : AppCompatActivity() {
     @SuppressLint("NotifyDataSetChanged", "UseSwitchCompatOrMaterialCode", "CommitPrefEdits")
@@ -17,15 +15,13 @@ class SettingsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
         val actionBar = supportActionBar
-        actionBar!!.title = "Настройки"
+        actionBar!!.title = getString(R.string.settings)
         val btn = findViewById<SwitchCompat>(R.id.switch_button_dark_theme)
 
-        val APP_PREFERENCES = "mysettings"
-        val mSettings: SharedPreferences = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE)
-        val APP_NIGHTMODE = "NIGHTMODE"
-        val editor: SharedPreferences.Editor = mSettings.edit()
-        if (mSettings.contains(APP_NIGHTMODE)) {
-            if (mSettings.getBoolean(APP_NIGHTMODE, true)) {
+        val mSettings: SharedPreferences = getSharedPreferences(getString(R.string.APP_PREFERENCES), Context.MODE_PRIVATE)
+                val editor: SharedPreferences.Editor = mSettings.edit()
+        if (mSettings.contains(getString(R.string.APP_NIGHTMODE))) {
+            if (mSettings.getBoolean(getString(R.string.APP_NIGHTMODE), true)) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                 btn.isChecked = true
             } else {
@@ -37,15 +33,15 @@ class SettingsActivity : AppCompatActivity() {
         btn.setOnCheckedChangeListener { _, isChecked ->
             if (btn.isChecked) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                editor.putBoolean(APP_NIGHTMODE, true)
+                editor.putBoolean(getString(R.string.APP_NIGHTMODE), true)
                     .apply()
             } else {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                editor.putBoolean(APP_NIGHTMODE, false)
+                editor.putBoolean(getString(R.string.APP_NIGHTMODE), false)
                     .apply()
             }
         }
 
-        editor.putBoolean(APP_NIGHTMODE, true)
+        editor.putBoolean(getString(R.string.APP_NIGHTMODE), true)
     }
 }

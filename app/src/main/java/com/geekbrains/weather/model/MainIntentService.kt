@@ -2,10 +2,7 @@ package com.geekbrains.weather.model
 
 import android.app.IntentService
 import android.content.Intent
-import android.util.Log
 import com.geekbrains.weather.R
-import com.geekbrains.weather.view.fragments.DetailFragment.Companion.TEST_BROADCAST_INTENT_FILTER
-import com.geekbrains.weather.view.fragments.DetailFragment.Companion.THREADS_FRAGMENT_BROADCAST_EXTRA
 
 class MainIntentService : IntentService("MainIntentService") {
 
@@ -15,8 +12,8 @@ class MainIntentService : IntentService("MainIntentService") {
 
     //Отправка уведомления о завершении сервиса
     private fun sendBack(result: String) {
-        val broadcastIntent = Intent(TEST_BROADCAST_INTENT_FILTER)
-        broadcastIntent.putExtra(THREADS_FRAGMENT_BROADCAST_EXTRA, result)
+        val broadcastIntent = Intent(getString(R.string.TEST_BROADCAST_INTENT_FILTER))
+        broadcastIntent.putExtra(getString(R.string.THREADS_FRAGMENT_BROADCAST_EXTRA), result)
         sendBroadcast(broadcastIntent)
     }
 

@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="switch_button_dark_theme">Выключить тёмную тему</string>
+    <string name="settings">Настройки</string>
+    <string name="history_request">История запросов</string>
 </resources>
