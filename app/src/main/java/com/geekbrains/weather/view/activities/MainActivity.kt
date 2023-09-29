@@ -6,12 +6,10 @@ import android.content.IntentFilter
 import android.content.SharedPreferences
 import android.net.ConnectivityManager
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.content.ContentProviderCompat.requireContext
 import com.geekbrains.weather.R
 import com.geekbrains.weather.databinding.ActivityMainBinding
 import com.geekbrains.weather.model.MainBroadcastReceiver
@@ -26,18 +24,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        // подгружаем тему из SharedPreferences
-        val mSettings: SharedPreferences = getSharedPreferences(getString(R.string.APP_PREFERENCES), Context.MODE_PRIVATE)
-        mSettings.edit()
-
-        if (mSettings.contains(getString(R.string.APP_NIGHTMODE))) {
-            if (mSettings.getBoolean(getString(R.string.APP_NIGHTMODE), true)) {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-            } else {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-            }
-        }
+        SharedPreferencesDownload()
 
         setContentView(binding.root)
         // созданый ресивер регистрируем через метод registerReceiver
@@ -45,6 +32,26 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction()
             .add(R.id.main_container, MainFragment.newInstance())
             .commit()
+    }
+
+    fun SharedPreferencesDownload() {
+        // подгружаем тему из SharedPreferences
+        val mSettings: SharedPreferences = getSharedPreferences(getString(R.string.APP_PREFERENCES), Context.MODE_PRIVATE)
+        mSettings.edit()
+        if (checkNightmodeContains(mSettings)) checkNightmodeGetBoolean(mSettings)
+    }
+
+    fun checkNightmodeContains(mSettings: SharedPreferences): Boolean {
+        if (mSettings.contains(getString(R.string.APP_NIGHTMODE))) return true
+        return false
+    }
+
+    fun checkNightmodeGetBoolean(mSettings: SharedPreferences) {
+        if (mSettings.getBoolean(getString(R.string.APP_NIGHTMODE), true)) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        }
     }
 
     /*** Чтобы наш активити узнал о существовании меню.
