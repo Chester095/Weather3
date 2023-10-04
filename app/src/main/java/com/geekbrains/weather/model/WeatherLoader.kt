@@ -82,7 +82,7 @@ object WeatherLoader {
         .build()
 
 
-    private val weatherAPI: WeatherAPI = Retrofit.Builder()
+    val weatherAPI: WeatherAPI = Retrofit.Builder()
         .baseUrl("https://api.weather.yandex.ru/")
         .client(client)
         // как преобразовывать
