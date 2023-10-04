@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
             .commit()
     }
 
-    fun SharedPreferencesDownload() {
+    private fun SharedPreferencesDownload() {
         // подгружаем тему из SharedPreferences
         val mSettings: SharedPreferences = getSharedPreferences(getString(R.string.APP_PREFERENCES), Context.MODE_PRIVATE)
         mSettings.edit()
@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
         return false
     }
 
-    fun checkNightmodeGetBoolean(mSettings: SharedPreferences) {
+    private fun checkNightmodeGetBoolean(mSettings: SharedPreferences) {
         if (mSettings.getBoolean(getString(R.string.APP_NIGHTMODE), true)) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
         } else {

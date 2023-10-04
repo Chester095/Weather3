@@ -19,7 +19,7 @@ class MainViewModel : ViewModel() {
     fun getWeatherFromRemoteSource() = getDataFromLocalSource(isRussian)
 
     //
-    private fun getDataFromLocalSource(isRussian: Boolean = true) {
+    fun getDataFromLocalSource(isRussian: Boolean = true)  {
         //изменяем state (статус данных)
         liveDataToObserve.value = AppState.Loading
 

@@ -123,7 +123,7 @@ object WeatherLoader {
             .url("https://api.weather.yandex.ru/v2/informers?Lat=${city.lat}&lon=${city.lon}")
             .build()
 
-        // у клиента спрашиываем запрос
+        // у клиента спрашиваем запрос
         client.newCall(request)
             // execute - в этом же потоке, enqueue в новом
             .enqueue(object : Callback {

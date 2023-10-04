@@ -6,9 +6,7 @@ object RepositoryImpl : Repository {
     private var weather: Weather? = null
 
     override fun getWeatherFromServer(): Weather? = weather
-
     override fun getWeatherFromLocalStorageRus(): List<Weather> = getRussianCities()
-
     override fun getWeatherFromLocalStorageWorld(): List<Weather> = getWorldCities()
 
     override fun weatherLoaded(weather: Weather?) {
