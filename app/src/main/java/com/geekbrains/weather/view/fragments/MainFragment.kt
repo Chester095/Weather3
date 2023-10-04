@@ -90,7 +90,6 @@ class MainFragment : Fragment() {
         }
     }
 
-
     //метод реализует реакцию на различные состояния
     private fun render(state: AppState) {
         when (state) {
