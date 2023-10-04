@@ -2,9 +2,7 @@
 ## **Weather** - Weather viewing application, according to which all practical tasks will be given.
 ---
 ### Functionality:
-1. Dummy
-> 2.
-> 3.
+ Тестирование добавлено
 >
 #### Настройка:
 Создать файл apikey.properties и положить туда yandex_weather_api_key="Ваш API key"
